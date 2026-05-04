@@ -550,6 +550,17 @@
 </style>
 </head>
 <body>
+<div id="sync-indicator" style="
+  position:fixed; top:0; left:0; right:0;
+  z-index:9999;
+  text-align:center;
+  font-size:12px;
+  padding:3px 0;
+  background:rgba(26,107,138,0.85);
+  color:#fff;
+  display:none;
+  pointer-events:none;
+">🔄 同期中...</div>
 
 <div class="app-wrapper">
   <!-- Header -->
@@ -598,70 +609,70 @@
             <div class="checklist" id="checklist">
 
               <div class="checklist-phase">📅 フェーズ1：今すぐ〜4月中旬</div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-0" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">パスポート有効期限確認</div>
                   <div class="check-sub">マルタ滞在終了後6ヶ月以上の有効期限が必要</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-1" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">航空券の予約確認書を印刷 or 保存</div>
                   <div class="check-sub">予約番号：8423261（エアトリ）</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-2" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">語学学校・アパートの情報を確認</div>
                   <div class="check-sub">住所・緊急連絡先をメモ。5/10〜5/30 セントジュリアン</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-3" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">イスタンブール往路ホテルを予約</div>
                   <div class="check-sub">5/9着〜5/10朝発。空港付近 or 旧市街</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-4" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">イスタンブール復路ホテルを予約</div>
                   <div class="check-sub">6/2深夜着〜6/3夕方発。空港付近 or 旧市街</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-5" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">5/30〜6/2 バレッタ周辺ホテルを予約</div>
                   <div class="check-sub">Booking.comのキャンセル無料プランで仮予約推奨</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-6" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">ホテルへの送迎依頼メッセージ送信</div>
                   <div class="check-sub">語学学校アパートへの空港送迎が必要か確認・依頼</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-7" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">スペイン旅行の日程決定（バルセロナ・サンセバスチャン）</div>
                   <div class="check-sub">留学中の週末（金〜月）で3泊4日の候補日を絞る</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-8" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">マルタ〜スペイン間の航空券（LCC）予約</div>
                   <div class="check-sub">Ryanair / Vueling。早めほど安い。片道5,000〜12,000円目安</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-9" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">スペイン国内の列車（Renfe）予約</div>
@@ -670,49 +681,49 @@
               </div>
 
               <div class="checklist-phase">📅 フェーズ2：中盤〜4月下旬</div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-10" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">ユーロ現金を準備（€150〜200程度）</div>
                   <div class="check-sub">空港到着直後のバス・タクシー・チップはカード不可の場合あり</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-11" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">在マルタ日本大使館の連絡先を控える</div>
                   <div class="check-sub">パスポート紛失・緊急時の頼り先。スマホへ保存しておく</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-12" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">保険会社の海外緊急連絡先を控える</div>
                   <div class="check-sub">SMBC Oliveの海外旅行保険の緊急連絡先をスマホへ保存</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-13" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">eSIMを手配・設定</div>
                   <div class="check-sub">ヨーロッパ対応のeSIM（Airalo等）を事前にインストール</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-14" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">海外旅行保険の英文証明書発行（SMBC Olive）</div>
                   <div class="check-sub">Olive公式アプリ or 書面で英文証明書を取得・保存</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-15" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">英文の入学許可証を印刷</div>
                   <div class="check-sub">語学学校から受け取った書類。入国審査で提示する場合あり</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-16" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">海外キャッシング・支払い手段の確認</div>
@@ -721,63 +732,63 @@
               </div>
 
               <div class="checklist-phase">📅 フェーズ3：直前〜5月初旬</div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-17" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">パスポートのコピーを印刷 or スマホ保存</div>
                   <div class="check-sub">紛失時に再発行手続きがスムーズになる。写真アプリに保存も可</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-18" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">変換プラグを準備（マルタはType G：イギリス式）</div>
                   <div class="check-sub">日本の電化製品はそのまま使えないので要注意</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-19" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">常備薬・軽い医薬品を準備</div>
                   <div class="check-sub">胃腸薬、解熱剤、絆創膏など</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-20" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">SMBC Olive カードを持参</div>
                   <div class="check-sub">海外旅行保険付き（傷害・疾病治療300万円）</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-21" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">必須アプリのインストール</div>
                   <div class="check-sub">Bolt（タクシー）・Google翻訳・Googleマップ・eCabsなど</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-22" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">のど飴を購入</div>
                   <div class="check-sub">機内は非常に乾燥するため必須。13時間のフライトで重宝する</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-23" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">首枕を準備</div>
                   <div class="check-sub">13時間フライトで首への負担を大幅に軽減。あるとないとでは快適さが全然違う</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-24" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">アイマスク・機内用スリッパを準備</div>
                   <div class="check-sub">アイマスクは照明・時差対策に。スリッパは足元が冷えやすい機内での快適さを保つ</div>
                 </div>
               </div>
-              <div class="check-item" onclick="toggleCheck(this)">
+              <div class="check-item" id="chk-25" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">パッキング（イスタンブール1泊用の手荷物を分ける）</div>
@@ -2494,28 +2505,73 @@ function toggleSection(header) {
   header.parentElement.classList.toggle('collapsed');
 }
 
-// ── Checklist with localStorage ──
-function toggleCheck(item) {
-  item.classList.toggle('checked');
-  saveChecklist();
-  updateProgress();
+// ── Checklist with GAS sync (PC↔iPhone) ──
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxWgdfIsCZNrKCkXwyiAd-YFVH3X92hpBhxmrHmXSJ7OgSzrypyjRk7cst1aIccEx3GeQ/exec';
+
+function showSyncIndicator(visible) {
+  const el = document.getElementById('sync-indicator');
+  if (el) el.style.display = visible ? 'block' : 'none';
 }
 
-function saveChecklist() {
+function toggleCheck(item) {
+  item.classList.toggle('checked');
+  const id = item.id || ('chk-' + Array.from(document.querySelectorAll('.check-item')).indexOf(item));
+  const isChecked = item.classList.contains('checked');
+  saveToLocalStorage();
+  updateProgress();
+  saveToGAS(id, isChecked);
+}
+
+function saveToLocalStorage() {
   const items = document.querySelectorAll('.check-item');
-  const states = Array.from(items).map(i => i.classList.contains('checked'));
-  try { localStorage.setItem('malta-checklist', JSON.stringify(states)); } catch(e) {}
+  const states = {};
+  items.forEach(i => { if (i.id) states[i.id] = i.classList.contains('checked'); });
+  try { localStorage.setItem('malta-checklist-v2', JSON.stringify(states)); } catch(e) {}
+}
+
+function saveToGAS(id, isChecked) {
+  showSyncIndicator(true);
+  fetch(GAS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'set', key: id, value: isChecked })
+  })
+  .catch(e => console.log('GAS保存エラー:', e))
+  .finally(() => showSyncIndicator(false));
 }
 
 function loadChecklist() {
+  // まずlocalStorageで即座に反映
   try {
-    const saved = JSON.parse(localStorage.getItem('malta-checklist') || '[]');
+    const saved = JSON.parse(localStorage.getItem('malta-checklist-v2') || '{}');
     const items = document.querySelectorAll('.check-item');
-    items.forEach((item, i) => {
-      if (saved[i]) item.classList.add('checked');
+    items.forEach(item => {
+      if (item.id && saved[item.id]) item.classList.add('checked');
     });
   } catch(e) {}
   updateProgress();
+
+  // GASから最新状態を取得して上書き
+  showSyncIndicator(true);
+  fetch(GAS_URL + '?action=getAll', { mode: 'cors' })
+    .then(r => r.json())
+    .then(data => {
+      if (!data || typeof data !== 'object') return;
+      const items = document.querySelectorAll('.check-item');
+      items.forEach(item => {
+        if (!item.id) return;
+        if (data[item.id] === true) {
+          item.classList.add('checked');
+        } else if (data[item.id] === false) {
+          item.classList.remove('checked');
+        }
+      });
+      saveToLocalStorage();
+      updateProgress();
+    })
+    .catch(e => console.log('GAS読込エラー:', e))
+    .finally(() => showSyncIndicator(false));
 }
 
 function updateProgress() {
