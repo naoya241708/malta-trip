@@ -1,0 +1,2543 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="マルタ旅行">
+<title>マルタ旅行 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sea: #1a6b8a;
+    --sea-light: #2d8db0;
+    --sea-dark: #0f4a63;
+    --gold: #c9a84c;
+    --gold-light: #e4c97a;
+    --cream: #f5f0e8;
+    --stone: #d4c5a9;
+    --text: #2a2018;
+    --text-muted: #6b5f4e;
+    --white: #ffffff;
+    --tab-h: 56px;
+    --safe-top: env(safe-area-inset-top);
+    --safe-bottom: env(safe-area-inset-bottom);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .app-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding-top: var(--safe-top);
+    background: var(--sea-dark);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    position: relative;
+  }
+
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+  }
+
+  .header-sub {
+    font-size: 0.6rem;
+    color: var(--stone);
+    letter-spacing: 0.15em;
+    text-align: center;
+    padding: 2px 0 6px;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  /* ── Tab Bar ── */
+  .tab-bar {
+    display: flex;
+    overflow-x: auto;
+    background: var(--sea-dark);
+    border-bottom: 2px solid var(--gold);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex: 0 0 auto;
+    padding: 10px 18px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--stone);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    position: relative;
+    top: 2px;
+  }
+
+  .tab-btn.active {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold);
+  }
+
+  .tab-btn:active { opacity: 0.7; }
+
+  /* ── Layout ── */
+  .app-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .content-area {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: calc(20px + var(--safe-bottom));
+  }
+
+  /* ── Tab Panels ── */
+  .tab-panel {
+    display: none;
+    animation: fadeIn 0.25s ease;
+  }
+  .tab-panel.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Phase Hero ── */
+  .phase-hero {
+    padding: 28px 20px 20px;
+    background: linear-gradient(135deg, var(--sea-dark) 0%, var(--sea) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; right: -20px;
+    width: 100px; height: 100px;
+    border: 2px solid rgba(201,168,76,0.2);
+    border-radius: 50%;
+  }
+
+  .phase-hero::before {
+    content: '';
+    position: absolute;
+    bottom: -10px; right: 20px;
+    width: 60px; height: 60px;
+    border: 2px solid rgba(201,168,76,0.15);
+    border-radius: 50%;
+  }
+
+  .phase-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .phase-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    color: var(--white);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+
+  .phase-date {
+    font-size: 0.7rem;
+    color: var(--gold-light);
+    margin-top: 6px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .phase-desc {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.75);
+    margin-top: 8px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── Cards ── */
+  .cards {
+    padding: 16px 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    background: var(--white);
+    cursor: pointer;
+    gap: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .card-header:active { background: var(--cream); }
+
+  .card-icon {
+    font-size: 1.2rem;
+    flex: 0 0 auto;
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    flex: 1;
+    color: var(--text);
+  }
+
+  .card-chevron {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+    flex: 0 0 auto;
+  }
+
+  .card.open .card-chevron { transform: rotate(180deg); }
+
+  .card-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--cream);
+  }
+
+  .card.open .card-body { display: block; }
+
+  /* ── Items inside cards ── */
+  .info-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cream);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  .info-item:last-child { border-bottom: none; }
+
+  .info-label {
+    color: var(--sea);
+    font-weight: 500;
+    flex: 0 0 80px;
+    font-size: 0.75rem;
+  }
+
+  .info-value {
+    color: var(--text);
+    flex: 1;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-sea { background: rgba(26,107,138,0.12); color: var(--sea-dark); }
+  .badge-gold { background: rgba(201,168,76,0.18); color: #7a5f1a; }
+  .badge-green { background: rgba(60,140,80,0.12); color: #235a2e; }
+  .badge-red { background: rgba(180,60,60,0.12); color: #7a2020; }
+
+  /* ── Empty State ── */
+  .empty-state {
+    margin: 20px 16px;
+    padding: 32px 20px;
+    background: var(--white);
+    border-radius: 12px;
+    text-align: center;
+    border: 2px dashed var(--stone);
+  }
+
+  .empty-state-icon { font-size: 2.5rem; margin-bottom: 12px; }
+
+  .empty-state-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .empty-state-text {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .empty-state-hint {
+    margin-top: 12px;
+    font-size: 0.72rem;
+    color: var(--sea);
+    font-weight: 500;
+  }
+
+  /* ── Note ── */
+  .note {
+    background: rgba(201,168,76,0.1);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 0.78rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .note-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: #7a5f1a;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Flight Card ── */
+  .flight-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--cream);
+    gap: 8px;
+  }
+  .flight-row:last-child { border-bottom: none; }
+
+  .flight-time {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--sea-dark);
+    min-width: 48px;
+  }
+
+  .flight-arrow {
+    color: var(--stone);
+    font-size: 0.8rem;
+    flex: 0 0 auto;
+  }
+
+  .flight-info { flex: 1; }
+
+  .flight-route {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .flight-detail {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ── Flight time block (dep + arr with TZ) ── */
+  .flight-times {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 96px;
+    flex: 0 0 auto;
+  }
+
+  .ft-row {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+  }
+
+  .ft-label {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    min-width: 22px;
+  }
+
+  .ft-time {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--sea-dark);
+  }
+
+  .ft-tz {
+    font-size: 0.6rem;
+    color: var(--sea);
+    font-weight: 500;
+  }
+
+  .ft-jst {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+  }
+
+  /* ── Checklist ── */
+  .checklist { padding: 4px 0; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--cream);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .check-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 20px; height: 20px;
+    border: 2px solid var(--stone);
+    border-radius: 5px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: transparent;
+    transition: all 0.15s;
+    margin-top: 1px;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--sea);
+    border-color: var(--sea);
+    color: white;
+  }
+
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+
+  .check-label {
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .check-sub {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* ── Section accordion (inside cards) ── */
+  .section-group { margin-bottom: 4px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    background: rgba(201,168,76,0.1);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    margin: 10px 0 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #7a5f1a;
+    letter-spacing: 0.05em;
+  }
+
+  .section-header:active { opacity: 0.7; }
+
+  .section-chevron {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+    flex: 0 0 auto;
+  }
+
+  .section-group.collapsed .section-chevron { transform: rotate(-90deg); }
+
+  .section-group.collapsed .section-body { display: none; }
+
+  .section-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding: 6px 0 6px;
+    line-height: 1.6;
+    border-bottom: 1px solid var(--cream);
+  }
+
+  /* ── Checklist Phase Header ── */
+  .checklist-phase {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--sea-dark);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 0 4px;
+    border-bottom: 1px solid var(--stone);
+    margin-bottom: 2px;
+  }
+
+  /* ── Progress ── */
+  .progress-bar {
+    height: 4px;
+    background: var(--cream);
+    border-radius: 2px;
+    margin: 8px 0 12px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--sea), var(--sea-light));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 8px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="app-wrapper">
+  <!-- Header -->
+  <div class="app-header">
+    <div class="header-inner">
+      <span class="header-title">🌊 Malta 2025</span>
+    </div>
+    <div class="header-sub">NAOYA'S STUDY ABROAD PLAN</div>
+
+    <!-- Tab Bar -->
+    <div class="tab-bar" id="tabBar">
+      <button class="tab-btn active" onclick="showTab('prep')">準備</button>
+      <button class="tab-btn" onclick="showTab('outbound')">往路</button>
+      <button class="tab-btn" onclick="showTab('turkey')">トルコ</button>
+      <button class="tab-btn" onclick="showTab('malta')">マルタ留学中</button>
+      <button class="tab-btn" onclick="showTab('spain')">スペイン</button>
+      <button class="tab-btn" onclick="showTab('italy')">イタリア</button>
+      <button class="tab-btn" onclick="showTab('stay')">マルタ延泊</button>
+      <button class="tab-btn" onclick="showTab('return')">復路</button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content-area" id="contentArea">
+
+    <!-- ── 準備 ── -->
+    <div class="tab-panel active" id="tab-prep">
+      <div class="phase-hero">
+        <div class="phase-icon">📋</div>
+        <div class="phase-title">出発準備</div>
+        <div class="phase-date">〜 May 9, 2025</div>
+        <div class="phase-desc">初めての一人海外。しっかり準備して安心して出発しよう。</div>
+      </div>
+      <div class="cards">
+
+        <!-- チェックリスト -->
+        <div class="card open" id="card-checklist">
+          <div class="card-header" onclick="toggleCard('card-checklist')">
+            <span class="card-icon">✅</span>
+            <span class="card-title">準備チェックリスト</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="progress-bar"><div class="progress-fill" id="checkProgress" style="width:0%"></div></div>
+            <div class="progress-label" id="checkLabel">0 / 0 完了</div>
+            <div class="checklist" id="checklist">
+
+              <div class="checklist-phase">📅 フェーズ1：今すぐ〜4月中旬</div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">パスポート有効期限確認</div>
+                  <div class="check-sub">マルタ滞在終了後6ヶ月以上の有効期限が必要</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">航空券の予約確認書を印刷 or 保存</div>
+                  <div class="check-sub">予約番号：8423261（エアトリ）</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">語学学校・アパートの情報を確認</div>
+                  <div class="check-sub">住所・緊急連絡先をメモ。5/10〜5/30 セントジュリアン</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">イスタンブール往路ホテルを予約</div>
+                  <div class="check-sub">5/9着〜5/10朝発。空港付近 or 旧市街</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">イスタンブール復路ホテルを予約</div>
+                  <div class="check-sub">6/2深夜着〜6/3夕方発。空港付近 or 旧市街</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">5/30〜6/2 バレッタ周辺ホテルを予約</div>
+                  <div class="check-sub">Booking.comのキャンセル無料プランで仮予約推奨</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">ホテルへの送迎依頼メッセージ送信</div>
+                  <div class="check-sub">語学学校アパートへの空港送迎が必要か確認・依頼</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">スペイン旅行の日程決定（バルセロナ・サンセバスチャン）</div>
+                  <div class="check-sub">留学中の週末（金〜月）で3泊4日の候補日を絞る</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">マルタ〜スペイン間の航空券（LCC）予約</div>
+                  <div class="check-sub">Ryanair / Vueling。早めほど安い。片道5,000〜12,000円目安</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">スペイン国内の列車（Renfe）予約</div>
+                  <div class="check-sub">バルセロナ⇔サンセバスチャン。Renfe公式サイトで予約</div>
+                </div>
+              </div>
+
+              <div class="checklist-phase">📅 フェーズ2：中盤〜4月下旬</div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">ユーロ現金を準備（€150〜200程度）</div>
+                  <div class="check-sub">空港到着直後のバス・タクシー・チップはカード不可の場合あり</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">在マルタ日本大使館の連絡先を控える</div>
+                  <div class="check-sub">パスポート紛失・緊急時の頼り先。スマホへ保存しておく</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">保険会社の海外緊急連絡先を控える</div>
+                  <div class="check-sub">SMBC Oliveの海外旅行保険の緊急連絡先をスマホへ保存</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">eSIMを手配・設定</div>
+                  <div class="check-sub">ヨーロッパ対応のeSIM（Airalo等）を事前にインストール</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">海外旅行保険の英文証明書発行（SMBC Olive）</div>
+                  <div class="check-sub">Olive公式アプリ or 書面で英文証明書を取得・保存</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">英文の入学許可証を印刷</div>
+                  <div class="check-sub">語学学校から受け取った書類。入国審査で提示する場合あり</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">海外キャッシング・支払い手段の確認</div>
+                  <div class="check-sub">SMBC Oliveの海外キャッシング設定・上限額を確認。Wise等も検討</div>
+                </div>
+              </div>
+
+              <div class="checklist-phase">📅 フェーズ3：直前〜5月初旬</div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">パスポートのコピーを印刷 or スマホ保存</div>
+                  <div class="check-sub">紛失時に再発行手続きがスムーズになる。写真アプリに保存も可</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">変換プラグを準備（マルタはType G：イギリス式）</div>
+                  <div class="check-sub">日本の電化製品はそのまま使えないので要注意</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">常備薬・軽い医薬品を準備</div>
+                  <div class="check-sub">胃腸薬、解熱剤、絆創膏など</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">SMBC Olive カードを持参</div>
+                  <div class="check-sub">海外旅行保険付き（傷害・疾病治療300万円）</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">必須アプリのインストール</div>
+                  <div class="check-sub">Bolt（タクシー）・Google翻訳・Googleマップ・eCabsなど</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">のど飴を購入</div>
+                  <div class="check-sub">機内は非常に乾燥するため必須。13時間のフライトで重宝する</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">首枕を準備</div>
+                  <div class="check-sub">13時間フライトで首への負担を大幅に軽減。あるとないとでは快適さが全然違う</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">アイマスク・機内用スリッパを準備</div>
+                  <div class="check-sub">アイマスクは照明・時差対策に。スリッパは足元が冷えやすい機内での快適さを保つ</div>
+                </div>
+              </div>
+              <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">パッキング（イスタンブール1泊用の手荷物を分ける）</div>
+                  <div class="check-sub">機内持込みバッグに1泊分を入れ、預け荷物と分けて整理</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 重要書類 -->
+        <div class="card" id="card-docs">
+          <div class="card-header" onclick="toggleCard('card-docs')">
+            <span class="card-icon">📄</span>
+            <span class="card-title">重要情報メモ</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="info-label">予約番号</span>
+              <span class="info-value">8423261（エアトリ）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">ANAマイル</span>
+              <span class="info-value">4377385387 ／ 残高 約56,048マイル</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">クレカ</span>
+              <span class="info-value">SMBC Olive プラチナプリファード<br><span class="badge badge-green">海外旅行保険付帯済</span></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">保険内容</span>
+              <span class="info-value">傷害・疾病治療：300万円<br>賠償責任：5,000万円<br>携行品損害：50万円</span>
+            </div>
+            <div class="note">
+              <div class="note-label">💡 メモ</div>
+              パスポートのコピーをスマホで撮影しておく。紛失時に役立つ。
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── 往路 ── -->
+    <div class="tab-panel" id="tab-outbound">
+      <div class="phase-hero">
+        <div class="phase-icon">✈️</div>
+        <div class="phase-title">往路</div>
+        <div class="phase-date">May 9–10, 2025</div>
+        <div class="phase-desc">羽田からイスタンブール経由でマルタへ。初の一人フライト、いよいよ出発！</div>
+      </div>
+      <div class="cards">
+        <div class="card open" id="card-outflight">
+          <div class="card-header" onclick="toggleCard('card-outflight')">
+            <span class="card-icon">🛫</span>
+            <span class="card-title">フライト情報</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="flight-row">
+              <div class="flight-times">
+                <div class="ft-row"><span class="ft-label">出発</span><span class="ft-time">08:25</span><span class="ft-tz">JST</span></div>
+                <div class="ft-row"><span class="ft-label">到着</span><span class="ft-time">15:35</span><span class="ft-tz">TRT</span><span class="ft-jst">（21:35 JST）</span></div>
+              </div>
+              <div class="flight-info">
+                <div class="flight-route">羽田 (HND) → イスタンブール (IST)</div>
+                <div class="flight-detail">NH219（ANA）｜5/9｜13時間10分｜<span class="badge badge-sea">クラスS 50%積算</span></div>
+              </div>
+            </div>
+            <div class="note">
+              <div class="note-label">⏳ 乗り継ぎ</div>
+              イスタンブールに15:35 TRT着。15時間55分の乗り継ぎ。夜〜翌朝にかけて市内観光が可能！<br>
+              空港の外に出て市内観光をする場合は、入国審査（イミグレーション）の窓口を通ってトルコへ正式に入国する手続きが必要。空港内で待つだけなら手続き不要。
+            </div>
+            <div class="flight-row">
+              <div class="flight-times">
+                <div class="ft-row"><span class="ft-label">出発</span><span class="ft-time">07:30</span><span class="ft-tz">TRT</span><span class="ft-jst">（13:30 JST）</span></div>
+                <div class="ft-row"><span class="ft-label">到着</span><span class="ft-time">08:55</span><span class="ft-tz">CEST</span><span class="ft-jst">（15:55 JST）</span></div>
+              </div>
+              <div class="flight-info">
+                <div class="flight-route">イスタンブール (IST) → マルタ (MLA)</div>
+                <div class="flight-detail">KM2961（エアーマルタ/TK運航）｜5/10｜2時間25分｜<span class="badge badge-green">クラスY 100%積算</span></div>
+              </div>
+            </div>
+            <div class="note">
+              <div class="note-label">⏰ 空港への到着目安（IST 07:30発）</div>
+              国際線は出発<strong>3時間前</strong>推奨 → <strong>04:30 TRT（10:30 JST）</strong>までに空港着<br>
+              AirGate Airport Hotelは空港のすぐ近く（車・徒歩で約10〜15分）。ホテル出発は <strong>04:10〜04:15 TRT</strong> 頃が目安。チェックアウトは早朝になるため、<strong>事前にフロントへ伝えておこう</strong>。
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="card-outbag">
+          <div class="card-header" onclick="toggleCard('card-outbag')">
+            <span class="card-icon">🧳</span>
+            <span class="card-title">荷物・注意事項</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🎒 機内持ち込み詳細</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">液体類</span>
+                  <span class="info-value">100ml以下・ジッパー袋に入れて別出し</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">モバイルバッテリー</span>
+                  <span class="info-value">預け荷物不可・機内持ち込みのみ（160Wh以下）<span class="badge badge-red">スーツケースに入れない</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">PC・タブレット</span>
+                  <span class="info-value">セキュリティ検査でバッグから出して別トレイへ</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">貴重品</span>
+                  <span class="info-value">現金・クレジットカード・パスポートは必ず機内持ち込みに。絶対に預け荷物に入れない</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">搭乗券</span>
+                  <span class="info-value">スクリーンショット保存。機内モード中でも見られるように事前に保存しておく</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🧳 受託手荷物（スーツケース）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">重量制限</span>
+                  <span class="info-value">23kg × 1個</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">鍵</span>
+                  <span class="info-value">TSAロックまたは南京錠をかける</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">壊れ物対策</span>
+                  <span class="info-value">壊れ物・充電器類は服で包んで保護</span>
+                </div>
+                <div class="note">
+                  <div class="note-label">💡 乗り継ぎ時の荷物</div>
+                  イスタンブール乗り継ぎでの荷物はマルタまで自動転送の予定。ただしチェックイン時にスタッフへ必ず確認を。
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🛫 羽田出発当日の注意</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">ターミナル</span>
+                  <span class="info-value">第3ターミナル（国際線）から出発。第1・2とは別建物なので注意 <span class="badge badge-red">間違い注意</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">チェックイン締切</span>
+                  <span class="info-value">ANAカウンターは出発2時間前締め切り目安。6:25（出発08:25の2時間前）には空港到着を目標に</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">オンラインチェックイン</span>
+                  <span class="info-value">前日までに済ませておくとスムーズ。当日は手荷物預けのみでOK</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🕌 イスタンブール乗り継ぎの注意</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">ビザ</span>
+                  <span class="info-value">日本国籍はトランジットビザ不要 <span class="badge badge-green">不要</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">貴重品管理</span>
+                  <span class="info-value">夜間の移動・観光中はパスポート・財布を常に身につける</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">次フライトへ</span>
+                  <span class="info-value">翌朝07:30発に乗り遅れないよう、空港には3時間前（04:30 TRT）到着目標</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>😴 機内の快適グッズ</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">水・のど飴</span>
+                  <span class="info-value">機内は非常に乾燥するため、のどを守るために手元に用意</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">耳栓・アイマスク</span>
+                  <span class="info-value">13時間の長距離フライトに。機内の照明や時差対策にも有効</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">首枕</span>
+                  <span class="info-value">あると格段に楽になる。長距離フライトの首への負担を大幅に軽減</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">スリッパ・靴下</span>
+                  <span class="info-value">機内用スリッパと厚手の靴下。足元が冷えやすいので必須</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── トルコ ── -->
+    <div class="tab-panel" id="tab-turkey">
+      <div class="phase-hero">
+        <div class="phase-icon">🕌</div>
+        <div class="phase-title">イスタンブール</div>
+        <div class="phase-date">往路：May 9夜 ／ 復路：Jun 2-3</div>
+        <div class="phase-desc">二度の乗り継ぎで立ち寄る魅惑の古都。ブルーモスクとグランドバザールへ。</div>
+      </div>
+      <div class="cards">
+        <div class="card open" id="card-turkey-hotel">
+          <div class="card-header" onclick="toggleCard('card-turkey-hotel')">
+            <span class="card-icon">🏨</span>
+            <span class="card-title">ホテル</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="note">
+              <div class="note-label">✅ 往路：予約済</div>
+              AirGate Airport Hotel ★★★（空港近く・Arnavutköy）
+            </div>
+            <div class="info-item">
+              <span class="info-label">チェックイン</span>
+              <span class="info-value">5/9（土）12:00〜</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">チェックアウト</span>
+              <span class="info-value">5/10（日）01:00〜12:00<br><span class="badge badge-gold">早朝チェックアウト（04:10頃）を事前にフロントへ伝えておこう</span></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">部屋</span>
+              <span class="info-value">デラックス シングルルーム（禁煙）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">食事</span>
+              <span class="info-value">なし</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">住所</span>
+              <span class="info-value">Gülibrişim Sk. no.4, 34275 Arnavutköy, トルコ<br>
+                <a href="https://www.google.com/maps/search/?api=1&query=AirGate+Airport+Hotel+Arnavutkoy+Istanbul+Turkey" target="_blank" style="color:var(--sea);font-size:0.75rem;">📍 Google マップで見る</a>
+              </span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">キャンセル</span>
+              <span class="info-value">到着日18:00まで無料。以降は宿泊料金100%</span>
+            </div>
+
+            <div class="note" style="margin-top:12px">
+              <div class="note-label">⚠️ 復路：未手配</div>
+              6/2（深夜着）〜6/3（17:45発）。翌朝〜昼ごろまで観光可能。旧市街エリアが便利。
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="card-turkey-spots">
+          <div class="card-header" onclick="toggleCard('card-turkey-spots')">
+            <span class="card-icon">📍</span>
+            <span class="card-title">観光スポット</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="info-label">ブルーモスク</span>
+              <span class="info-value">世界遺産。無料で入場可。旧市街の中心</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">アヤソフィア</span>
+              <span class="info-value">元大聖堂・現モスク。入場無料（礼拝時間帯は観光不可）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">グランドバザール</span>
+              <span class="info-value">4,000店舗以上の巨大市場。お土産探しに最適。日〜土 9〜19時頃</span>
+            </div>
+            <div class="note">
+              <div class="note-label">⚠️ 注意</div>
+              ぼったくり・押し売りに注意。値段は必ず確認してから購入。声をかけてくる人には愛想よく断って大丈夫。
+            </div>
+            <div class="info-item">
+              <span class="info-label">ビザ</span>
+              <span class="info-value">日本国籍はビザ不要（90日以内）<span class="badge badge-green">不要</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── マルタ留学中 ── -->
+    <div class="tab-panel" id="tab-malta">
+      <div class="phase-hero">
+        <div class="phase-icon">🏫</div>
+        <div class="phase-title">マルタ留学中</div>
+        <div class="phase-date">May 10 – May 30, 2025</div>
+        <div class="phase-desc">セントジュリアンの語学学校アパートに滞在。英語を学びながら地中海の島を満喫！</div>
+      </div>
+      <div class="cards">
+        <div class="card open" id="card-malta-stay">
+          <div class="card-header" onclick="toggleCard('card-malta-stay')">
+            <span class="card-icon">🏠</span>
+            <span class="card-title">滞在情報</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="info-label">エリア</span>
+              <span class="info-value">セントジュリアン（St. Julian's）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">期間</span>
+              <span class="info-value">5/10（着）〜 5/30（退去）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">宿泊</span>
+              <span class="info-value">語学学校の附属アパート</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="card-malta-life">
+          <div class="card-header" onclick="toggleCard('card-malta-life')">
+            <span class="card-icon">🚌</span>
+            <span class="card-title">現地生活情報</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="note">
+              <div class="note-label">🚌 バス（メイン交通手段）</div>
+              マルタに電車・地下鉄はなし。バスが唯一の公共交通機関。
+            </div>
+            <div class="info-item">
+              <span class="info-label">運賃</span>
+              <span class="info-value">€2 / 回（2時間以内乗り放題・乗り換え自由）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">支払い</span>
+              <span class="info-value">クレカのタッチ決済 or 現金。<br>現金はお釣りなしのため小銭必須。小銭なしだと乗車拒否されることあり</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">ルート検索</span>
+              <span class="info-value">Googleマップが必須。バス番号と乗り場を事前確認して乗ること<br>
+                <a href="https://www.publictransport.com.mt/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;">ジャーニープランナー</a>
+                <a href="https://www.publictransport.com.mt/routes-timetables-view-all-routes/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;">時刻表・路線一覧</a>
+              </span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">降車</span>
+              <span class="info-value">「STOP」ボタンを押す。忘れたら大声で「STOP!」と叫べばOK</span>
+            </div>
+            <div class="note">
+              <div class="note-label">⚠️ 遅延・満員に注意</div>
+              10〜20分遅れは普通。満員で乗れないことも。時間に余裕を持って行動すること。
+            </div>
+
+            <div class="note" style="margin-top:12px">
+              <div class="note-label">🎫 バスカード（おすすめ）</div>
+              空港・主要バス停の券売機で購入可（クレカ払い）。
+            </div>
+            <div class="info-item">
+              <span class="info-label">12回券</span>
+              <span class="info-value">€19 <span class="badge badge-gold">1回あたり€1.58でお得</span></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Explore Card</span>
+              <span class="info-value">€21 / 7日間乗り放題</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">購入場所</span>
+              <span class="info-value">セントジュリアンの「Ross」バス停近くに券売機あり（学校から近い）</span>
+            </div>
+
+            <div class="note" style="margin-top:12px">
+              <div class="note-label">🚕 タクシーアプリ（Bolt が最もおすすめ）</div>
+              マルタでは流しのタクシーは拾えない。アプリ必須。
+            </div>
+            <div class="info-item">
+              <span class="info-label">Bolt</span>
+              <span class="info-value">ヨーロッパ発のアプリ。マルタで最もシェアが高く料金も安い。2025年現在ほぼ一強状態 <span class="badge badge-green">推奨</span></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">使い方</span>
+              <span class="info-value">乗車場所・目的地を入力 → 料金が事前表示 → カード決済。ぼったくりなし</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">空港→セントジュリアン</span>
+              <span class="info-value">約€15〜20、20〜30分。中心部なら2〜3分で来ることが多い</span>
+            </div>
+
+            <div class="note" style="margin-top:12px">
+              <div class="note-label">⛴️ フェリー</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">スリーマ↔バレッタ</span>
+              <span class="info-value">朝7時〜深夜0時、30分間隔。バスより断然速くておすすめ <span class="badge badge-sea">観光に最適</span><br>
+                <a href="https://www.vallettaferryservices.com/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;">時刻表・チケット（公式）</a>
+              </span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">ゴゾ島</span>
+              <span class="info-value">チェルケッワ港から出航（セントジュリアンからバスで約1時間）<br>
+                <a href="https://gozohighspeed.com/booking" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;">チケット予約（高速フェリー）</a>
+              </span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">シチリア島</span>
+              <span class="info-value">ヴィルトゥ・フェリーズが運航（1日複数便）<br>
+                <a href="https://www.directferries.jp/ferries_from_malta_to_sicily.htm" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;">チケット予約（日本語・日本円対応）</a>
+              </span>
+            </div>
+
+            <div class="note" style="margin-top:12px">
+              <div class="note-label">⚠️ 共通の注意事項</div>
+              バス内のスリに注意。スマホ・財布は前ポケットや前抱えのバッグに。<br>
+              バスは道が狭くカーブが多く揺れる。座席に座るかしっかり手すりを持つこと。
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card" id="card-malta-food">
+          <div class="card-header" onclick="toggleCard('card-malta-food')">
+            <span class="card-icon">🍽️</span>
+            <span class="card-title">グルメ・観光スポット</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>📍 セントジュリアン（滞在エリア）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">スピノーラ湾</span>
+                  <span class="info-value">カラフルな伝統漁船ルッツが浮かぶ港。オープンテラスのカフェ・レストランが集結。昼はのんびり、夜はライトアップされロマンチックな雰囲気に <a href="https://maps.app.goo.gl/3QqbxsNjR7ZFGXHV9" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">バルータベイ</span>
+                  <span class="info-value">砂浜ビーチ。学校から近く気軽に行ける。5月は泳ぐには少し早いが散歩・日光浴に最適 <a href="https://maps.app.goo.gl/Nz5jP6FfYaC8HVXB6" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">パーチャビル</span>
+                  <span class="info-value">マルタ最大のナイトスポット。バー・クラブ・カジノが深夜まで賑わう。語学学校の友人との夜遊びに最適 <a href="https://maps.app.goo.gl/BM6fHsyPCE1Q9bC59" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ポートマソ・マリーナ</span>
+                  <span class="info-value">高級ヨットハーバー。散歩・写真撮影におすすめ。カジノもあり <a href="https://maps.app.goo.gl/8rT1UKWxoMzqJ7jt8" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🏛️ バレッタ（世界遺産の首都）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">聖ヨハネ大聖堂</span>
+                  <span class="info-value">バロック様式の豪華内装。カラヴァッジョの名画「洗礼者ヨハネの斬首」所蔵。<span class="badge badge-gold">入場料€15（オーディオガイド込み）</span><br>ヒールのある靴は入場不可 <a href="https://www.stjohnscocathedral.com/visit/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">🌐 公式サイト</a> <a href="https://maps.app.goo.gl/hTVGNV9a5KQ2ydGe7" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:4px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">アッパー・バラッカ・ガーデン</span>
+                  <span class="info-value">グランドハーバーを一望できる絶景公園。<span class="badge badge-green">無料</span> 毎日12時・16時に大砲の礼砲あり。夕暮れ時が特に絶景 <a href="https://maps.app.goo.gl/FqBFLSs8KvpmWPEW7" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">騎士団長の宮殿</span>
+                  <span class="info-value">マルタ騎士団ゆかりの宮殿。現在も大統領府として使用中。壁一面の絵画や大砲が圧巻 <a href="https://heritagemalta.mt/grandmasters-palace/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">🌐 公式サイト</a> <a href="https://maps.app.goo.gl/RFrCGGRK3BHTeddr9" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:4px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Rampila Restaurant</span>
+                  <span class="info-value">トンネルの中にある話題のレストラン。抜けるとバレッタの絶景テラス席。特別なディナーにおすすめ <a href="https://maps.app.goo.gl/nPZV8PYrVMuAKs3Y9" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Guze Bistro</span>
+                  <span class="info-value">ミシュランガイド掲載の老舗ビストロ。1906年創業。家庭的なマルタ伝統料理。<span class="badge badge-red">予約必須</span> <a href="https://maps.app.goo.gl/u3xzxRsv8NWqUSBU8" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🏰 イムディーナ（静寂の古都）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="section-desc">中世の街並みが完全保存された「静寂の街（Silent City）」。「ゲーム・オブ・スローンズ」ロケ地。はちみつ色の石造建築とブーゲンビリアがSNS映え抜群。<br><a href="https://www.visitmalta.com/en/a/mdina/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">🌐 公式サイト</a> <a href="https://maps.app.goo.gl/M47jhq8JTQM3vbJNA" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:4px;font-size:0.65rem;">📍 地図</a></div>
+                <div class="info-item">
+                  <span class="info-label">アクセス</span>
+                  <span class="info-value">バレッタからバスで約30分。昼と夜で全く雰囲気が異なり、夜景も幻想的</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">展望スポット</span>
+                  <span class="info-value">城壁からマルタ島全体が見渡せるパノラマビューが楽しめる</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🐟 マルサシュロック（漁村）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="section-desc">カラフルな漁船ルッツが並ぶのどかな漁村。シーフードレストランが充実。<br><a href="https://www.visitmalta.com/en/a/marsaxlokk/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">🌐 公式サイト</a> <a href="https://maps.app.goo.gl/XkT8SfVGHfP6Yn1h8" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:4px;font-size:0.65rem;">📍 地図</a></div>
+                <div class="info-item">
+                  <span class="info-label">日曜朝市</span>
+                  <span class="info-value">毎週日曜開催。はちみつ・伝統菓子・銀細工フィリグリーなどマルタ名産品が並ぶ。お土産探しに最適 <span class="badge badge-gold">日曜訪問推奨</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">アクセス</span>
+                  <span class="info-value">バレッタからバスで約40分。人気レストランは予約必須</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🌊 青の洞窟（Blue Grotto）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="section-desc">小舟に乗って洞窟をくぐる体験。光の当たり方で海が青く輝く絶景スポット。マルタ島南部、ヴィード・イッ・ジュルム村の近く。<br><a href="https://www.visitmalta.com/en/a/blue-grotto/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">🌐 公式サイト</a> <a href="https://maps.app.goo.gl/X9r1L2PoCRV7FzFE8" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:4px;font-size:0.65rem;">📍 地図</a></div>
+                <div class="info-item">
+                  <span class="info-label">アクセス</span>
+                  <span class="info-value">バレッタからバスで約1時間</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ボートツアー</span>
+                  <span class="info-value">現地で申し込み可。午前中の光の角度が最も美しい</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🏝️ ゴゾ島（日帰り旅行）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="section-desc">マルタ本島から北西6km。チェルケッワ港からフェリー約25分。<br><a href="https://www.visitgozo.com/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">🌐 公式サイト</a> <a href="https://maps.app.goo.gl/Gg7UMiUrXBUzb8hN9" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:4px;font-size:0.65rem;">📍 地図</a></div>
+                <div class="info-item">
+                  <span class="info-label">ジュガンティーヤ神殿</span>
+                  <span class="info-value">世界最古の石造建築（紀元前3600年）。<span class="badge badge-sea">世界遺産</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">チタデル城塞</span>
+                  <span class="info-value">城壁の上からゴゾ島全体を一望できる絶景スポット</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ブルーホール</span>
+                  <span class="info-value">スキューバダイビング・シュノーケリングの名所。透明度が高く壁沿いに洞窟あり</span>
+                </div>
+                <div class="note">
+                  <div class="note-label">💡 移動のコツ</div>
+                  バスは本数少なく観光地が点在しているため、Boltタクシーかツアー参加がおすすめ。
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🏖️ コミノ島（ブルーラグーン）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="section-desc">マルタ島とゴゾ島の間に浮かぶ小島。地中海トップクラスの透明度を誇るブルーラグーン。ボートが宙に浮いているように見える写真が撮れる絶景スポット。</div>
+                <div class="info-item">
+                  <span class="info-label">アクセス</span>
+                  <span class="info-value">フェリーで日帰り可。<span class="badge badge-gold">往復約€15</span> 夏は激混みのため午前中早めに到着がおすすめ <a href="https://maps.app.goo.gl/6kAc7cjtHRPbhXBPA" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">撮影ベストタイム</span>
+                  <span class="info-value">6〜8月の11〜14時がゴールデンタイム</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🍴 おすすめレストラン（セントジュリアン）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">Gozitan Restaurant</span>
+                  <span class="info-value">ゴゾ島の伝統料理を提供するレストラン。ウサギ料理など本格的なマルタ・ゴゾ料理が楽しめる <a href="https://maps.app.goo.gl/UY9sNb3pZJCwVsMA8" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">The Avenue</span>
+                  <span class="info-value">セントジュリアンの人気レストラン。地中海料理からステーキまで幅広いメニュー。地元民にも人気 <a href="https://maps.app.goo.gl/q7zJpP91K1bPJSF47" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Mamma Mia</span>
+                  <span class="info-value">本格イタリアン。パスタ・ピザが絶品。スピノーラ湾沿いのテラス席でゆったり食事ができる <a href="https://maps.app.goo.gl/dG5LRXJFNdvR5NUo9" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🍽️ おすすめグルメ・マルタ料理</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">パスティッツィ</span>
+                  <span class="info-value">リコッタチーズのサクサクパイ。<span class="badge badge-green">€0.5〜1</span> 軽食・朝ごはんに最適。マルタのソウルフード</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">フェネック</span>
+                  <span class="info-value">ウサギのシチュー。マルタの国民食。クセが少なく食べやすい</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ブラジオリ</span>
+                  <span class="info-value">トマトソース煮込みの牛肉ロール。初めてでも親しみやすい味</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">アリオッタ</span>
+                  <span class="info-value">マルタ風魚のスープ。海の幸の旨味が凝縮</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">フティーラ</span>
+                  <span class="info-value">マルタ伝統のパン。外はカリッと中はもちもち。ウサギ肉やプルドポークをのせたサンドイッチが人気</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">カンノーリ</span>
+                  <span class="info-value">シチリア発祥の伝統菓子。マルタでも広く食べられる。お土産にも最適</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">シーフード全般</span>
+                  <span class="info-value">マルタ産の新鮮な魚介類が豊富。シーフードパスタ・タコのスパゲッティ・グリル魚など。港沿いのレストランがおすすめ</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card" id="card-malta-nightlife">
+          <div class="card-header" onclick="toggleCard('card-malta-nightlife')">
+            <span class="card-icon">🎉</span>
+            <span class="card-title">クラブ・ナイトライフ</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="note">
+              <div class="note-label">🌃 パーチャビル（Paceville）概要</div>
+              マルタ最大のクラブ街。セントジュリアンのスピノーラ湾北側に集中。ほとんどのクラブは入場無料（5〜6月は特に無料が多い）。夏（6〜8月）は有料イベントあり。<br>
+              オープン22〜23時、クローズ4〜5時。ドリンクはヨーロッパの中でも安く、ウォッカ・ウイスキー1杯約€2.5〜3。<strong>パスポートまたはIDカード持参必須（18歳以上）。</strong>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🎵 主要クラブ一覧</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+
+                <div class="info-item">
+                  <span class="info-label">Havana Club</span>
+                  <span class="info-value">マルタで最も有名な老舗クラブ。3フロア（ラテン・R&B・レトロ）。18〜35歳の国際的な客層。<br>
+                    音楽：R&B・Hip Hop・ラテン・90年代レトロ<br>
+                    入場：5〜6月は無料。夏季（7〜8月）は有料イベントあり。営業：金・土・日 22:00〜04:00<br>
+                    <a href="https://fasttrackclubs.mt/clubs/havana-club-malta/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">🌐 公式サイト</a>
+                    <a href="https://www.google.com/maps/search/Havana+Club+Paceville+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:4px;font-size:0.65rem;">📍 地図</a>
+                  </span>
+                </div>
+
+                <div class="info-item">
+                  <span class="info-label">Sky Club</span>
+                  <span class="info-value">マルタ最大の屋内クラブ。2,000㎡・収容3,400人・3フロア。豪華な照明・レーザー演出。<br>
+                    音楽：ハウス・EDM・商業音楽<br>
+                    入場：イベントにより異なる（無料〜有料）。営業：木〜日 23:00〜04:00<br>
+                    <a href="https://www.google.com/maps/search/Sky+Club+Malta+Paceville" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">📍 地図</a>
+                  </span>
+                </div>
+
+                <div class="info-item">
+                  <span class="info-label">TwentyTwo</span>
+                  <span class="info-value">ポートマソタワー22階のルーフトップクラブ。360度の絶景。やや大人向け（25〜40歳）、ドレスコードあり。<br>
+                    音楽：ハウス・エレクトロ<br>
+                    入場：無料〜（VIPテーブル€45〜€55/本）。営業：水・木 21:30〜02:30、金・土 21:30〜04:00<br>
+                    <a href="https://www.google.com/maps/search/TwentyTwo+Portomaso+Tower+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">📍 地図</a>
+                  </span>
+                </div>
+
+                <div class="info-item">
+                  <span class="info-label">Toy Room</span>
+                  <span class="info-value">Pachaグループ運営。テーマナイト豊富で週7日営業。国際的な雰囲気。<br>
+                    音楽：R&B・Hip Hop・Reggaeton<br>
+                    入場：イベントにより異なる。営業：週7日 23:00〜04:00<br>
+                    <a href="https://www.google.com/maps/search/Toy+Room+Club+Paceville+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">📍 地図</a>
+                  </span>
+                </div>
+
+                <div class="info-item">
+                  <span class="info-label">Hugo's Passion</span>
+                  <span class="info-value">Hugo'sグループのクラブ。屋外エリアとソファ席あり。パーティー初心者にも入りやすい雰囲気。<br>
+                    音楽：ラテン・商業音楽<br>
+                    入場：基本無料。営業：毎日 22:00〜04:00<br>
+                    <a href="https://www.google.com/maps/search/Hugo%27s+Paceville+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">📍 地図</a>
+                  </span>
+                </div>
+
+                <div class="info-item">
+                  <span class="info-label">Footloose</span>
+                  <span class="info-value">常に満員・激安ドリンクで有名なパーチャビルの定番。留学生の集まる場所。<br>
+                    音楽：商業音楽・ポップス<br>
+                    入場：無料 <span class="badge badge-green">留学生に人気</span><br>
+                    <a href="https://www.google.com/maps/search/Footloose+Paceville+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">📍 地図</a>
+                  </span>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🎫 チケット・イベント情報</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">公式チケットサイト</span>
+                  <span class="info-value">パーチャビル各クラブのチケット・イベント情報 <a href="https://fasttrackclubs.mt/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">🌐 fasttrackclubs.mt</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">イベント情報</span>
+                  <span class="info-value">週末のクラブイベント・ナイトライフ情報まとめ <a href="https://maltafiesta.com/malta-clubs/" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">🌐 maltafiesta.com</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="note" style="margin-top:8px">
+              <div class="note-label">⚠️ 注意事項</div>
+              パスポートは原本ではなく、写真ページをスマホで撮影したコピーを見せれば大抵OK。<br>
+              パスポートを必ず持参（入場時に提示が必要）。荷物はできるだけ少なく。スマホ・財布のスリに注意。<br>
+              ドリンクは安いがウォーターダウンのことも多い。テキーラなどのショットがおすすめ。<br>
+              ボーサー（警備員）とのトラブルは避けること。<br>
+              5月の滞在中はほぼ無料入場可能。夏より混雑も少なくのびのび楽しめる。<br>
+              語学学校主催のクラブイベントがある場合も。3軒まわってドリンク3杯無料で€3.5程度という声も。
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card" id="card-malta-shopping">
+          <div class="card-header" onclick="toggleCard('card-malta-shopping')">
+            <span class="card-icon">🛒</span>
+            <span class="card-title">自炊・スーパー情報</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🏪 主なスーパーマーケット</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">Lidl</span>
+                  <span class="info-value">ドイツ系ディスカウントスーパー。マルタ各地に複数店舗あり。野菜・肉・パスタなど安くそろう。自炊メインならここが最安 <span class="badge badge-green">コスパ◎</span> <a href="https://www.google.com/maps/search/Lidl+St+Julian%27s+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ALDI</span>
+                  <span class="info-value">Lidlと同様のドイツ系ディスカウント。品揃えが似ており、価格帯も同程度 <a href="https://www.google.com/maps/search/ALDI+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Greens Supermarket</span>
+                  <span class="info-value">マルタのローカルスーパーチェーン。セントジュリアン周辺にも店舗あり。生鮮食品・デリが充実 <a href="https://www.google.com/maps/search/Greens+Supermarket+St+Julian%27s+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Tower Supermarket</span>
+                  <span class="info-value">マルタ系スーパー。輸入品・ローカル食材どちらも揃う <a href="https://www.google.com/maps/search/Tower+Supermarket+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Welbee's</span>
+                  <span class="info-value">セントジュリアン近くのオーガニック・健康食品店。グルテンフリー商品や輸入食材も充実 <a href="https://www.google.com/maps/search/Welbee%27s+St+Julian%27s+Malta" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:6px;font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="note">
+                  <div class="note-label">💡 日曜日の注意</div>
+                  マルタでは日曜に閉まるスーパーが多い。週末の食料は土曜中にまとめ買いするのがベスト。
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🧺 新鮮食材の買い方</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">市場</span>
+                  <span class="info-value">各地に屋外マーケットあり。野菜・果物・魚が安くて新鮮。マルサシュロックの日曜朝市が有名</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">鮮魚</span>
+                  <span class="info-value">地元の漁師から直接買える場所も。スズキ・マグロ・タコ・イカが手頃な値段で手に入る</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">野菜・果物</span>
+                  <span class="info-value">トマト・ズッキーニ・ナス・ケッパー（マルタ名産）が安くて美味しい。地中海野菜が豊富</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🇲🇹 買うべきローカル食材・マルタ名産品</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">ジュベイネット（Ġbejniet）</span>
+                  <span class="info-value">マルタの伝統的な山羊・羊のチーズ。フレッシュ・乾燥・ペッパーがけの3種類。クラッカーやサラダに最高</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">マルタはちみつ</span>
+                  <span class="info-value">タイム草原で採れる世界的に希少なハチミツ。スーパーでも購入可。お土産にも最適</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ビギッラ（Bigilla）</span>
+                  <span class="info-value">そら豆のペースト。パンやクラッカーに塗るマルタの伝統的なディップ</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">フティーラ（Ftira）のパン</span>
+                  <span class="info-value">マルタ伝統のリング状パン。スーパー・パン屋で安く手に入る。朝食に最適</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ケッパー（Capers）</span>
+                  <span class="info-value">マルタ産ケッパーは風味が強く本格的。パスタ・サラダ・魚料理に使える</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Kinnie（キニー）</span>
+                  <span class="info-value">マルタのローカルソフトドリンク。苦みのあるオレンジ風味。缶・瓶ともにスーパーで購入可</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Cisk（シスク）</span>
+                  <span class="info-value">マルタのローカルビール。スーパーで€1前後と激安。缶・瓶どちらも豊富</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🍳 自炊のコツ・おすすめレシピ</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">パスタ料理</span>
+                  <span class="info-value">パスタ・トマト缶・ニンニク・オリーブオイルがあれば簡単絶品。マルタ産ケッパーを加えると本格的に</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ホブズ・ビズ・ゼイト風</span>
+                  <span class="info-value">マルタのソウルフード。パンにオリーブオイル・トマトペースト・ツナ・ケッパーをのせるだけ。朝食にも昼食にも</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">シーフード炒め</span>
+                  <span class="info-value">エビ・イカをオリーブオイル・ニンニク・白ワインで炒めるだけ。新鮮な魚介が安いマルタで是非</span>
+                </div>
+                <div class="note">
+                  <div class="note-label">💰 食費の目安</div>
+                  自炊中心なら1日€10〜15で十分。外食と組み合わせて€20〜30/日が現実的なライン。
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── スペイン ── -->
+    <div class="tab-panel" id="tab-spain">
+      <div class="phase-hero">
+        <div class="phase-icon">🥘</div>
+        <div class="phase-title">スペイン旅行</div>
+        <div class="phase-date">留学中の週末 3泊4日</div>
+        <div class="phase-desc">バルセロナ＆サンセバスチャンへ。ピンチョス食べ歩きが今回のメインイベント！</div>
+      </div>
+      <div class="cards">
+        <div class="card open" id="card-spain-plan">
+          <div class="card-header" onclick="toggleCard('card-spain-plan')">
+            <span class="card-icon">🗓️</span>
+            <span class="card-title">旅行プラン概要</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="info-label">日程</span>
+              <span class="info-value">金〜月の3泊4日（留学中の週末）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">フライト</span>
+              <span class="info-value">マルタ→バルセロナ<br>Ryanair / Vueling（LCC）約2時間15分<br><span class="badge badge-gold">片道 5,000〜12,000円</span><br>
+                <a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">🌐 Ryanair</a>
+                <a href="https://www.vueling.com/ja" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:4px;font-size:0.65rem;">🌐 Vueling</a>
+              </span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">列車</span>
+              <span class="info-value">バルセロナ⇔サンセバスチャン<br>Renfe（スペイン国鉄）約5時間半<br><span class="badge badge-gold">片道 3,000〜6,000円</span><br>
+                <a href="https://www.renfe.com/es/en" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-top:4px;display:inline-block;font-size:0.65rem;">🌐 Renfe公式</a>
+                <a href="https://www.thetrainline.com/en/train-times/barcelona-to-san-sebastian" target="_blank" class="badge badge-sea" style="text-decoration:none;margin-left:4px;font-size:0.65rem;">🌐 Trainline（日本語）</a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="card-spain-food">
+          <div class="card-header" onclick="toggleCard('card-spain-food')">
+            <span class="card-icon">🍢</span>
+            <span class="card-title">サンセバスチャン ピンチョス</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🍢 ピンチョスとは？</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">概要</span>
+                  <span class="info-value">バスク版タパス。バゲットの上に具材をのせた一口サイズの料理。<span class="badge badge-gold">1皿€2〜4程度</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">聖地</span>
+                  <span class="info-value">旧市街（カスコ・ビエホ）に100軒以上のバルが密集。メインは「8月31日通り（Calle 31 de Agosto）」</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">楽しみ方</span>
+                  <span class="info-value">1軒で1〜2皿＆1〜2杯飲んだらさっと次の店へ。立ち食い寿司感覚でハシゴするのが流儀</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🏘️ おすすめバル（旧市街）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">Bar Sport</span>
+                  <span class="info-value">フォアグラのピンチョスで有名。観光客に人気の定番店<a href="https://www.google.com/maps/search/Bar+Sport+San+Sebastian+Parte+Vieja" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Gandarinas</span>
+                  <span class="info-value">サーロインステーキのピンチョスと肉・魚介の串焼きが名物。蟹のタルト（€2.45）が絶品<a href="https://www.google.com/maps/search/Gandarinas+Bar+San+Sebastian" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">La Cuchara de San Telmo</span>
+                  <span class="info-value">「ピンチョスの王者」とも呼ばれる超人気店。小さな店内は常に満員<a href="https://www.google.com/maps/search/La+Cuchara+de+San+Telmo+San+Sebastian" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ATARI</span>
+                  <span class="info-value">サンタマリア教会前。テラス席あり。見た目も美しい映えピンチョスが揃う。<span class="badge badge-sea">事前ネット予約推奨</span><a href="https://www.google.com/maps/search/Atari+Gastroteka+San+Sebastian" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">La Viña</span>
+                  <span class="info-value">バスクチーズケーキ発祥の店。外はこんがり黒く中はとろとろ。世界中でブームになった本場の味<a href="https://www.google.com/maps/search/La+Vina+Bar+San+Sebastian" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🏙️ おすすめバル（グロス地区・新市街）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">Bar Bergara</span>
+                  <span class="info-value">ミシュランガイド掲載。「近代ピンチョス発祥の店」とも称される名店。<span class="badge badge-gold">€2.40〜</span><a href="https://www.google.com/maps/search/Bar+Bergara+Gros+San+Sebastian" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="note">
+                  <div class="note-label">💡 新市街のメリット</div>
+                  旧市街より観光客が少なく値段もお手頃。地元の雰囲気を味わいたいならこちらもおすすめ。
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🍷 飲み物</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">チャコリ</span>
+                  <span class="info-value">バスク地方の微発泡白ワイン。ピンチョスとの相性抜群 <span class="badge badge-green">定番</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ズリト</span>
+                  <span class="info-value">小さなグラスビール。€1.40程度。ハシゴするなら少量で飲むのがコツ</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">モスト</span>
+                  <span class="info-value">ノンアルコールのぶどうジュース。どのバルにも必ずある</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>💡 バル巡りのコツ</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">定休日</span>
+                  <span class="info-value">月曜定休の店が多い。日程を組む際は月曜を避けるか事前確認を <span class="badge badge-red">月曜注意</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">混雑対策</span>
+                  <span class="info-value">人気店は夜になると激混み。19時頃の早い時間に入るのがおすすめ</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">注文方法</span>
+                  <span class="info-value">カウンターのピンチョスを指差しでOK。スペイン語不要</span>
+                </div>
+                <div class="note">
+                  <div class="note-label">🚶 これがサンセバスチャン流</div>
+                  バルを出たら次の店まで移動。混んでたら遠慮なく次の店へ。旧市街と新市街のバルを混ぜると満足度が上がる。
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card" id="card-barcelona">
+          <div class="card-header" onclick="toggleCard('card-barcelona')">
+            <span class="card-icon">🏛️</span>
+            <span class="card-title">バルセロナ観光</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>⛪ サグラダ・ファミリア（最重要！）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="section-desc">1882年着工・建設142年以上続く未完の世界遺産。2026年にイエス・キリストの塔が完成見込み。年間来場者450〜500万人。<a href="https://sagradafamilia.org/en/home" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 公式サイト</a><a href="https://sagradafamilia.org/en/tickets-individuals" target="_blank" class="badge badge-gold" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🎟️ チケット</a><a href="https://www.google.com/maps/search/Sagrada+Familia+Barcelona" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">📍 地図</a></div>
+                <div class="note">
+                  <div class="note-label">⚠️ 当日券なし・完全予約制</div>
+                  公式サイト（sagradafamilia.org）で予約。日本語対応なし。日本語で買いたい場合はGetYourGuide（手数料あり）を利用。<strong>マルタ出発前に必ず予約！</strong>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">料金</span>
+                  <span class="info-value">教会のみ €26 ／ 塔見学付き <span class="badge badge-gold">€36（おすすめ）</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">塔からの眺め</span>
+                  <span class="info-value">バルセロナの街を一望。帰りは階段なので注意</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">時間帯</span>
+                  <span class="info-value">午前：青みがかった光で神秘的 ／ 午後：ステンドグラスが黄金色に輝く。どちらも美しい</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">所要時間</span>
+                  <span class="info-value">約2〜3時間。ドレスコードあり（肩・膝を隠す服装）</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🌿 グエル公園（ガウディの庭園）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="section-desc">ガウディ設計のモザイクタイルが美しい丘の上の公園。バルセロナを一望できる展望台あり。<a href="https://parkguell.barcelona/en" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 公式サイト</a><a href="https://parkguell.barcelona/en/buy-tickets" target="_blank" class="badge badge-gold" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🎟️ チケット</a><a href="https://www.google.com/maps/search/Park+Guell+Barcelona" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">📍 地図</a></div>
+                <div class="info-item">
+                  <span class="info-label">予約</span>
+                  <span class="info-value">有料エリア（装飾ゾーン）は事前予約推奨。無料の散歩エリアもあり</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">割引</span>
+                  <span class="info-value">サグラダ・ファミリアとのセット割引チケットあり</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🚶 ランブラス通り＆ゴシック地区</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">ランブラス通り</span>
+                  <span class="info-value">バルセロナ中心部の目抜き通り。約1.2kmのプロムナード。カフェ・土産店・花屋が並ぶ観光の起点<a href="https://www.google.com/maps/search/Las+Ramblas+Barcelona" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="note">
+                  <div class="note-label">⚠️ スリ多発エリア</div>
+                  ランブラス通りはスリが非常に多い。貴重品は前抱えのバッグへ。財布・スマホを出しっぱなしにしない。
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ゴシック地区</span>
+                  <span class="info-value">ランブラス通りの東側に広がる中世の旧市街。迷路のような石畳の路地が続く<a href="https://www.google.com/maps/search/Gothic+Quarter+Barcelona" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">見どころ</span>
+                  <span class="info-value">バルセロナ大聖堂、ピカソ美術館（<span class="badge badge-green">月曜無料</span>）などが集中</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🍽️ バルセロナのグルメ</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">パエリア</span>
+                  <span class="info-value">バルセロナ名物の米料理。海鮮パエリアが人気</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">カタルーニャ料理</span>
+                  <span class="info-value">地中海食材を使ったヘルシーな料理</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">バルのピンチョス</span>
+                  <span class="info-value">サンセバスチャンより観光客向けが多いが、十分楽しめる</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🎫 チケット予約の注意</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">サグラダ・ファミリア</span>
+                  <span class="info-value">旅行の1〜2ヶ月前から予約開始。早いほど希望の時間を取りやすい</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">グエル公園</span>
+                  <span class="info-value">こちらも事前予約推奨。当日は完売することが多い</span>
+                </div>
+                <div class="note">
+                  <div class="note-label">⚠️ マルタ出発前に予約完了を！</div>
+                  どちらも当日券は入手困難。スペイン旅行の日程が決まり次第、すぐ予約しておくこと。
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── イタリア ── -->
+    <div class="tab-panel" id="tab-italy">
+      <div class="phase-hero">
+        <div class="phase-icon">🍕</div>
+        <div class="phase-title">イタリア旅行</div>
+        <div class="phase-date">留学中の週末（複数回）</div>
+        <div class="phase-desc">マルタから気軽に行けるお隣イタリア。シチリアはフェリーでも行けるかも？</div>
+      </div>
+      <div class="cards">
+
+        <div class="card open" id="card-italy-flights">
+          <div class="card-header" onclick="toggleCard('card-italy-flights')">
+            <span class="card-icon">✈️</span>
+            <span class="card-title">マルタからのフライト一覧</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🚤 ベネツィア</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">航空会社</span>
+                  <span class="info-value">Ryanair（直行便・週6便）</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">空港</span>
+                  <span class="info-value">マルタ (MLA) → ヴェネツィア・トレヴィーゾ空港 (TSF)</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">所要時間</span>
+                  <span class="info-value">約1時間55分</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">料金目安</span>
+                  <span class="info-value">早期予約で片道 <span class="badge badge-green">€15〜（約2,500円〜）</span>、平均€76程度</span>
+                </div>
+                <div class="note">
+                  <div class="note-label">⚠️ 空港の注意</div>
+                  トレヴィーゾ空港はベネツィア中心部から約25km。タクシーで約40分かかる。
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🌋 ナポリ（アマルフィ・カプリ島の拠点）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">航空会社</span>
+                  <span class="info-value">Ryanair / easyJet（直行便・毎日運航）</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">空港</span>
+                  <span class="info-value">マルタ (MLA) → ナポリ国際空港 (NAP)</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">所要時間</span>
+                  <span class="info-value">約1時間20分</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">料金目安</span>
+                  <span class="info-value">早期予約で片道 <span class="badge badge-green">€15〜（約2,500円〜）</span>、平均€74程度</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">→ アマルフィへ</span>
+                  <span class="info-value">ナポリからバスで約1時間15分〜2時間</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">→ カプリ島へ</span>
+                  <span class="info-value">ナポリから高速船（水中翼船）で約40分</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🍋 シチリア（カターニア）— フライト</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">航空会社</span>
+                  <span class="info-value">Ryanair・KMマルタ航空など（直行便）</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">空港</span>
+                  <span class="info-value">マルタ (MLA) → カターニア・フォンタナロッサ空港 (CTA)</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">所要時間</span>
+                  <span class="info-value">約40〜60分 <span class="badge badge-sea">最短ルート</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">料金目安</span>
+                  <span class="info-value">早期予約で片道 <span class="badge badge-green">3,000〜8,000円程度</span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>⛴️ シチリア（ポッツァッロ）— フェリー</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">運航会社</span>
+                  <span class="info-value">Virtu Ferries（毎日運航）</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ルート</span>
+                  <span class="info-value">バレッタ港 → ポッツァッロ港</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">所要時間</span>
+                  <span class="info-value">約1時間45分</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">料金目安</span>
+                  <span class="info-value">片道 <span class="badge badge-gold">3,000〜8,000円程度</span></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">予約</span>
+                  <span class="info-value">Direct Ferriesサイト（日本語・日本円対応）</span>
+                </div>
+                <div class="note">
+                  <div class="note-label">⚠️ 便数に注意</div>
+                  1日1〜2便のみ。日帰りする場合は朝6:30発に乗る必要あり。前日に時刻を必ず確認。
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>💡 おすすめ組み合わせ</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">ナポリ拠点2泊3日</span>
+                  <span class="info-value">ナポリ観光＋アマルフィ＋カプリ島をセットで周るのが最も効率的</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ベネツィア週末旅</span>
+                  <span class="info-value">Ryanairで往復3,000〜5,000円程度も狙える</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">シチリア最短コース</span>
+                  <span class="info-value">飛行機で日帰りも可能。カターニア＋エトナ山 or タオルミーナ</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card open" id="card-italy-access">
+          <div class="card-header" onclick="toggleCard('card-italy-access')">
+            <span class="card-icon">✈️</span>
+            <span class="card-title">マルタからのアクセス</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="info-label">シチリア</span>
+              <span class="info-value">フライト約45分 or フェリー（要確認）<br>パレルモ・カターニアが主要都市</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">ローマ</span>
+              <span class="info-value">フライト約2時間。LCCあり</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">その他</span>
+              <span class="info-value">ミラノ、ナポリなども検討可</span>
+            </div>
+            <div class="note">
+              <div class="note-label">💡 おすすめ</div>
+              マルタからは何度か行けそうとのこと。最初の週末はシチリアが近くておすすめ！
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="card-italy-spots">
+          <div class="card-header" onclick="toggleCard('card-italy-spots')">
+            <span class="card-icon">🗺️</span>
+            <span class="card-title">観光プラン</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>✈️ マルタからのフライト一覧</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">ナポリ</span>
+                  <span class="info-value">Ryanair / easyJet（直行便・毎日）｜約1時間20分｜早期予約で片道€15〜<a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 Ryanair</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ベネツィア</span>
+                  <span class="info-value">Ryanair（直行便・週6便）｜約1時間55分｜早期予約で片道€15〜<a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 Ryanair</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">シチリア（飛行機）</span>
+                  <span class="info-value">Ryanair・KMマルタ航空など｜約40〜60分｜早期予約で片道3,000〜8,000円<a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 Ryanair</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">シチリア（フェリー）</span>
+                  <span class="info-value">Virtu Ferries：バレッタ港→ポッツァッロ港｜約1時間45分｜片道3,000〜8,000円<a href="https://www.directferries.jp/ferries_from_malta_to_sicily.htm" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 予約</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🍕 シチリア島</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">カターニア</span>
+                  <span class="info-value">マルタから最も近い玄関口。バロック様式の街並みが世界遺産。エトナ山（ヨーロッパ最大の活火山）への日帰りツアーあり<a href="https://www.google.com/maps/search/Catania+Sicily+Italy" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a><a href="https://www.visitsicily.info/en/catania/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 観光情報</a><a href="https://www.google.com/maps/search/Mount+Etna+Sicily" target="_blank" class="badge badge-stone" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">📍 エトナ山</a><a href="https://www.etnaexperience.com/" target="_blank" class="badge badge-stone" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 エトナ山ツアー</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">タオルミーナ</span>
+                  <span class="info-value">カターニアからバスで約1〜2時間。古代ギリシャ劇場からエトナ山・イオニア海を一望できる絶景リゾート<a href="https://www.google.com/maps/search/Taormina+Sicily+Italy" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a><a href="https://www.visitsicily.info/en/taormina/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 観光情報</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">パレルモ</span>
+                  <span class="info-value">シチリア最大の都市。ノルマン宮殿・マッシモ劇場（ゴッドファーザーのロケ地）・カポ市場など<a href="https://www.google.com/maps/search/Palermo+Sicily+Italy" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a><a href="https://www.visitsicily.info/en/palermo/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 観光情報</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">グルメ</span>
+                  <span class="info-value">カンノーリ（リコッタチーズ入りパイ菓子）・グラニータ（シャーベット飲料）・アランチーネ（揚げライスコロッケ）</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🚤 ベネツィア</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">サン・マルコ広場</span>
+                  <span class="info-value">ベネツィアの象徴。サン・マルコ大聖堂・鐘楼が集まる中心地<a href="https://www.google.com/maps/search/Piazza+San+Marco+Venice+Italy" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ゴンドラ乗船</span>
+                  <span class="info-value">運河を流れる定番体験。1艘（最大6人）約€80〜</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">リアルト橋</span>
+                  <span class="info-value">大運河にかかる有名な石橋。市場・土産店が集まるにぎやかなエリア<a href="https://www.google.com/maps/search/Rialto+Bridge+Venice+Italy" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ブラーノ島</span>
+                  <span class="info-value">カラフルな家々が並ぶ虹色の島。水上バスで約40分<a href="https://www.google.com/maps/search/Burano+Island+Venice" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a><a href="https://www.isoladiburano.it/en/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 公式サイト</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🌊 アマルフィ海岸（ナポリ拠点）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">アマルフィ本町</span>
+                  <span class="info-value">断崖に張り付いた絵葉書のような街。アマルフィ大聖堂が圧巻<a href="https://www.google.com/maps/search/Amalfi+town+Italy" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a><a href="https://www.visitamalfi.info/en/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 公式サイト</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ポジターノ</span>
+                  <span class="info-value">崖の上から海に向かって家々が重なる絶景リゾート。アマルフィからバスで約30分<a href="https://www.google.com/maps/search/Positano+Italy" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a><a href="https://www.positanoturismo.com/en/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 公式サイト</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">アクセス</span>
+                  <span class="info-value">ナポリ→アマルフィ：サレルノ経由バス（SITA社）で約1時間15分</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>💎 カプリ島（ナポリ拠点）</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">青の洞窟</span>
+                  <span class="info-value">光の加減で海が神秘的な青色に輝く洞窟。午前中が光が綺麗。天候次第で入れないことも<a href="https://www.google.com/maps/search/Blue+Grotto+Capri" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a><a href="https://www.lasercapri.com/en/tours" target="_blank" class="badge badge-gold" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🎟️ ツアー予約</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ソラーロ山</span>
+                  <span class="info-value">チェアリフトで山頂へ。カプリ島とナポリ湾を一望できる絶景展望台<a href="https://www.google.com/maps/search/Monte+Solaro+Capri" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a><a href="https://www.capriseggiovia.it/en/index.html" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 チェアリフト公式</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">アクセス</span>
+                  <span class="info-value">ナポリ港→カプリ島：高速船（水中翼船）で約40分・フェリーで約80分</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>💡 おすすめ組み合わせ</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="note">
+                  <div class="note-label">💡 おすすめコース</div>
+                  <ul style="margin:4px 0; padding-left:16px; line-height:1.8;">
+                    <li><strong>ナポリ拠点2〜3泊：</strong>ナポリ観光＋アマルフィ海岸＋カプリ島をセットで周るのが最も効率的</li>
+                    <li><strong>ベネツィア週末旅：</strong>Ryanairで往復3,000〜5,000円も狙える。2泊あれば十分満喫可能</li>
+                    <li><strong>シチリア最短コース：</strong>飛行機で日帰りも可能。カターニア＋エトナ山 or タオルミーナ</li>
+                  </ul>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ポンペイ</span>
+                  <span class="info-value">世界遺産の古代ローマ遺跡。ナポリから電車で約35分。アマルフィとセットで訪問がおすすめ<a href="https://www.google.com/maps/search/Pompeii+Italy" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">📍 地図</a><a href="https://pompeiisites.org/en/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 公式サイト</a><a href="https://pompeiisites.org/en/buy-tickets/" target="_blank" class="badge badge-gold" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🎟️ チケット</a></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── マルタ延泊 ── -->
+    <div class="tab-panel" id="tab-stay">
+      <div class="phase-hero">
+        <div class="phase-icon">🏰</div>
+        <div class="phase-title">マルタ延泊</div>
+        <div class="phase-date">May 30 – Jun 2, 2025</div>
+        <div class="phase-desc">学校アパートを退去した後の3泊。バレッタ観光やゴゾ島も選択肢に。</div>
+      </div>
+      <div class="cards">
+        <div class="card open" id="card-stay-hotel">
+          <div class="card-header" onclick="toggleCard('card-stay-hotel')">
+            <span class="card-icon">🏨</span>
+            <span class="card-title">ホテル（要手配）</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="info-label">期間</span>
+              <span class="info-value">5/30（チェックイン）〜 6/2（チェックアウト）3泊</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">エリア</span>
+              <span class="info-value">バレッタ（Valletta）周辺が候補</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">予算</span>
+              <span class="info-value">5,000〜10,000円 / 泊</span>
+            </div>
+            <div class="note">
+              <div class="note-label">💡 推奨</div>
+              Booking.comのキャンセル無料プランで仮予約しておくと安心。キャンセル無料期限は5/15（木）23:59まで。直前まで変更できる。
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="card-stay-plan">
+          <div class="card-header" onclick="toggleCard('card-stay-plan')">
+            <span class="card-icon">📍</span>
+            <span class="card-title">観光プラン案</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>🇲🇹 選択肢① マルタ国内観光</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">バレッタ</span>
+                  <span class="info-value">欧州文化首都。世界遺産の要塞都市。上部バラッカ庭園・聖ヨハネ大聖堂など<a href="https://www.visitmalta.com/en/a/valletta/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">ゴゾ島</span>
+                  <span class="info-value">マルタ本島北西。静かな田園風景と神殿遺跡。フェリーで約25分<a href="https://www.visitgozo.com/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">コミノ島・ブルーラグーン</span>
+                  <span class="info-value">エメラルドグリーンの透明な海。シュノーケリングの聖地。夏は混雑するので早朝がおすすめ<a href="https://www.visitmalta.com/en/a/comino/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">マルサシュロック</span>
+                  <span class="info-value">カラフルな漁船が並ぶ漁村。日曜の朝市が有名。新鮮な魚介が安く食べられる<a href="https://www.visitmalta.com/en/a/marsaxlokk/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">イムディーナ</span>
+                  <span class="info-value">「沈黙の街」と呼ばれる中世の城塞都市。夜景が特に美しい。映画・ドラマのロケ地<a href="https://www.visitmalta.com/en/a/mdina/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-group">
+              <div class="section-header" onclick="toggleSection(this)">
+                <span>✈️ 選択肢② 2泊3日の近隣国旅行</span><span class="section-chevron">▼</span>
+              </div>
+              <div class="section-body">
+                <div class="info-item">
+                  <span class="info-label">🥇 アテネ</span>
+                  <span class="info-value">パルテノン神殿・アクロポリスなどの古代遺跡。ギリシャ料理も魅力<a href="https://www.thisisathens.org/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a><a href="https://www.visitgreece.gr/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 ギリシャ観光局</a><a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-stone" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">✈️ フライト</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">🥈 チュニジア（チュニス）</span>
+                  <span class="info-value">アフリカ最近の異文化体験。カルタゴ遺跡・メディナ（旧市街）など<a href="https://www.tourismtunisia.com/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a><a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-stone" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">✈️ フライト</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">🥉 リスボン</span>
+                  <span class="info-value">路面電車・ファド・エッグタルト。坂の街の絶景と歴史ある港町<a href="https://www.visitlisboa.com/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a><a href="https://www.visitportugal.com/en/destinos/lisboa-regiao" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">🌐 ポルトガル観光局</a><a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-stone" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">✈️ フライト</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">4位 キプロス（パフォス）</span>
+                  <span class="info-value">地中海の島国。アフロディーテ生誕の地伝説・世界遺産のモザイク遺跡<a href="https://www.visitcyprus.com/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a><a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-stone" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">✈️ フライト</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">5位 ティラナ（アルバニア）</span>
+                  <span class="info-value">欧州穴場スポット。独特のカラフルな建物・スカンデルベグ広場・バラット地区<a href="https://www.albania.al/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a><a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-stone" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">✈️ フライト</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">6位 ダブリン（アイルランド）</span>
+                  <span class="info-value">ギネスビール発祥地・トリニティカレッジ・パブ文化。英語圏で旅しやすい<a href="https://www.visitdublin.com/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a><a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-stone" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">✈️ フライト</a></span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">7位 ストックホルム（スウェーデン）</span>
+                  <span class="info-value">北欧デザインの都。旧市街ガムラスタン・ヴァーサ号博物館・夏の白夜<a href="https://visitstockholm.com/" target="_blank" class="badge badge-sea" style="text-decoration:none; margin-left:6px; font-size:0.65rem;">🌐 観光情報</a><a href="https://www.ryanair.com/jp/ja" target="_blank" class="badge badge-stone" style="text-decoration:none; margin-left:4px; font-size:0.65rem;">✈️ フライト</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="note">
+              <div class="note-label">📅 帰国便メモ</div>
+              6/2 19:25発なので当日も少し時間あり。国内観光なら当日の午後まで楽しめる。
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 復路 ── -->
+    <div class="tab-panel" id="tab-return">
+      <div class="phase-hero">
+        <div class="phase-icon">🏠</div>
+        <div class="phase-title">復路・帰国</div>
+        <div class="phase-date">Jun 2–4, 2025</div>
+        <div class="phase-desc">マルタを発ち、イスタンブール経由で帰国。最後の観光も忘れずに。</div>
+      </div>
+      <div class="cards">
+        <div class="card open" id="card-return-flight">
+          <div class="card-header" onclick="toggleCard('card-return-flight')">
+            <span class="card-icon">🛬</span>
+            <span class="card-title">フライト情報</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="flight-row">
+              <div class="flight-times">
+                <div class="ft-row"><span class="ft-label">出発</span><span class="ft-time">19:25</span><span class="ft-tz">CEST</span><span class="ft-jst">（翌02:25 JST）</span></div>
+                <div class="ft-row"><span class="ft-label">到着</span><span class="ft-time">22:55</span><span class="ft-tz">TRT</span><span class="ft-jst">（翌04:55 JST）</span></div>
+              </div>
+              <div class="flight-info">
+                <div class="flight-route">マルタ (MLA) → イスタンブール (IST)</div>
+                <div class="flight-detail">KM2962（エアーマルタ/TK運航）｜6/2｜2時間30分｜<span class="badge badge-green">クラスK 100%積算</span></div>
+              </div>
+            </div>
+            <div class="note">
+              <div class="note-label">⏰ 空港への到着目安（MLA 19:25発）</div>
+              国際線は出発<strong>3時間前</strong>推奨 → <strong>16:25 CEST（22:25 JST）</strong>までに空港着<br>
+              セントジュリアンからMalta空港（MLA）はBoltで約25〜30分。<strong>15:45〜16:00 CEST</strong>頃にホテルを出発。
+            </div>
+            <div class="note">
+              <div class="note-label">⏳ イスタンブール乗り継ぎ</div>
+              22:55 TRT着〜翌6/3 17:45 TRT発。18時間50分の乗り継ぎ。翌朝〜14時頃まで市内観光可能！
+            </div>
+            <div class="flight-row">
+              <div class="flight-times">
+                <div class="ft-row"><span class="ft-label">出発</span><span class="ft-time">17:45</span><span class="ft-tz">TRT</span><span class="ft-jst">（23:45 JST）</span></div>
+                <div class="ft-row"><span class="ft-label">到着</span><span class="ft-time">11:10</span><span class="ft-tz">JST</span><span class="ft-jst">（6/4 · 02:10 TRT）</span></div>
+              </div>
+              <div class="flight-info">
+                <div class="flight-route">イスタンブール (IST) → 羽田 (HND)</div>
+                <div class="flight-detail">NH220（ANA）｜6/3発→6/4着｜11時間25分｜<span class="badge badge-red">クラスL 30%積算</span></div>
+              </div>
+            </div>
+            <div class="note">
+              <div class="note-label">⏰ 空港への到着目安（IST 17:45発）</div>
+              国際線は出発<strong>3時間前</strong>推奨 → <strong>14:45 TRT（20:45 JST）</strong>までに空港着<br>
+              復路ホテルは未手配。観光後の移動時間を考慮して宿泊先を選ぼう。市内観光は<strong>13:30 TRT頃</strong>に切り上げるのが目安。
+            </div>
+            <div class="info-item" style="margin-top:8px">
+              <span class="info-label">帰国日</span>
+              <span class="info-value">6月4日（木）11:10 JST 羽田着</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="card-return-mile">
+          <div class="card-header" onclick="toggleCard('card-return-mile')">
+            <span class="card-icon">✈️</span>
+            <span class="card-title">帰国後のANAマイル</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="info-item">
+              <span class="info-label">現在残高</span>
+              <span class="info-value">約 56,048 マイル</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">帰国後見込み</span>
+              <span class="info-value">約 66,400 マイル</span>
+            </div>
+            <div class="note">
+              <div class="note-label">💡 メモ</div>
+              帰国後のマイルで特典航空券を検討しよう。ヨーロッパ路線は早めに予約がおすすめ。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end content-area -->
+</div><!-- end app-wrapper -->
+
+<script>
+// ── Tab switching ──
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  document.getElementById('contentArea').scrollTop = 0;
+
+  // Scroll tab into view
+  event.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+}
+
+// ── Card accordion ──
+function toggleCard(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+// ── Section accordion (inside cards) ──
+function toggleSection(header) {
+  header.parentElement.classList.toggle('collapsed');
+}
+
+// ── Checklist with localStorage ──
+function toggleCheck(item) {
+  item.classList.toggle('checked');
+  saveChecklist();
+  updateProgress();
+}
+
+function saveChecklist() {
+  const items = document.querySelectorAll('.check-item');
+  const states = Array.from(items).map(i => i.classList.contains('checked'));
+  try { localStorage.setItem('malta-checklist', JSON.stringify(states)); } catch(e) {}
+}
+
+function loadChecklist() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('malta-checklist') || '[]');
+    const items = document.querySelectorAll('.check-item');
+    items.forEach((item, i) => {
+      if (saved[i]) item.classList.add('checked');
+    });
+  } catch(e) {}
+  updateProgress();
+}
+
+function updateProgress() {
+  const items = document.querySelectorAll('.check-item');
+  const checked = document.querySelectorAll('.check-item.checked').length;
+  const total = items.length;
+  const pct = total ? Math.round((checked / total) * 100) : 0;
+  document.getElementById('checkProgress').style.width = pct + '%';
+  document.getElementById('checkLabel').textContent = checked + ' / ' + total + ' 完了';
+}
+
+// ── Fix layout for fixed header ──
+function adjustLayout() {
+  const header = document.querySelector('.app-header');
+  document.getElementById('contentArea').style.paddingTop = header.offsetHeight + 'px';
+}
+
+window.addEventListener('load', () => {
+  loadChecklist();
+  adjustLayout();
+});
+window.addEventListener('resize', adjustLayout);
+</script>
+</body>
+</html>
