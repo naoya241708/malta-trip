@@ -581,6 +581,17 @@
     color: var(--text-muted);
     opacity: 0.55;
   }
+
+/* -- Task Summary Bar -- */
+.task-summary-bar {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sea);
+  padding: 6px 0 2px;
+  margin-bottom: 2px;
+  letter-spacing: 0.01em;
+}
 </style>
 </head>
 <body>
@@ -630,6 +641,354 @@
       </div>
       <div class="cards">
 
+        <!-- 準備リスト -->
+        <div class="card open" id="card-prep-list">
+          <div class="card-header" onclick="toggleCard('card-prep-list')">
+            <span class="card-icon">📋</span>
+            <span class="card-title">準備リスト</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-prep-list"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-prep-list', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
+            <div class="task-summary-bar" id="prepLabel">読込中...</div>
+            <div class="progress-bar"><div class="progress-fill" id="prepProgress" style="width:0%"></div></div>
+            <div class="checklist">
+              <div class="checklist-phase">🛒 買うもの（残り）</div>
+              <div class="check-item" id="chk-euro-cash" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">ユーロ現金（€150〜200）</div>
+                  <div class="check-sub">5/7に三井住友銀行で両替予定</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-lira-atm" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">トルコリラ</div>
+                  <div class="check-sub">5/9 イスタンブール空港ATMで調達</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-throat-drops" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">のど飴</div>
+                  <div class="check-sub">機内・旅中の乾燥対策に</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-sunscreen" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">日焼け止め</div>
+                  <div class="check-sub">マルタ・スペインは日差しが強い</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-medicine" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">常備薬（胃腸薬・解熱剤・頭痛薬・絆創膏）</div>
+                  <div class="check-sub">現地調達が難しい場合に備えて</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-cabin-slippers" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">機内用スリッパ</div>
+                  <div class="check-sub">足元が冷えやすい機内での快適さのため</div>
+                </div>
+              </div>
+              <div class="checklist-phase">🖨️ 印刷・保存するもの</div>
+              <div class="check-item" id="chk-flight-confirm" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">航空券（予約番号：8423261）</div>
+                  <div class="check-sub">印刷 or スクショ保存</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-istanbul-print" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">イスタンブール ホテル予約確認書（AirGate）</div>
+                  <div class="check-sub">印刷推奨</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-admission-letter" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">語学学校の入学許可証（英文）</div>
+                  <div class="check-sub">印刷必須・入国審査で提示する場合あり</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-passport-copy" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">パスポートのコピー</div>
+                  <div class="check-sub">印刷＋スマホ保存・紛失時の再発行に必要</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-insurance-certificate" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">海外旅行保険の英文証明書（SMBCアプリから発行）</div>
+                  <div class="check-sub">印刷推奨</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-embassy-contact" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">在マルタ日本大使館の連絡先</div>
+                  <div class="check-sub">スマホメモ・緊急時の頼り先</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-insurance-contact" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">SMBC Olive 海外緊急連絡先</div>
+                  <div class="check-sub">スマホメモ</div>
+                </div>
+              </div>
+              <div class="checklist-phase">📱 アプリ・設定</div>
+              <div class="check-item" id="chk-esim-setup" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">eSIM（Airalo）</div>
+                  <div class="check-sub">ヨーロッパ対応eSIMを事前にインストール</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-apps-install" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">Bolt・Google翻訳・Googleマップ インストール</div>
+                  <div class="check-sub">eCabsも事前に入れておくと便利</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- パッキングリスト -->
+        <div class="card open" id="card-packing-list">
+          <div class="card-header" onclick="toggleCard('card-packing-list')">
+            <span class="card-icon">🧳</span>
+            <span class="card-title">パッキングリスト</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-packing-list"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-packing-list', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
+            <div class="task-summary-bar" id="packLabel">読込中...</div>
+            <div class="progress-bar"><div class="progress-fill" id="packProgress" style="width:0%"></div></div>
+            <div class="checklist">
+              <div class="checklist-phase">🎒 機内持ち込みバッグ（イスタンブール1泊用）</div>
+              <div class="check-item" id="chk-pack-passport" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">パスポート・財布・現金</div>
+                  <div class="check-sub">必ず機内持ち込みで</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-clothes1d" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">着替え1日分</div>
+                  <div class="check-sub">イスタンブール1泊用</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-throat-drops" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">のど飴</div>
+                  <div class="check-sub">機内持ち込みバッグに入れる</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-neck-pillow" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">首枕</div>
+                  <div class="check-sub">13時間フライトで首への負担を軽減</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-eye-mask-slippers" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">アイマスク・機内用スリッパ</div>
+                  <div class="check-sub">快適な機内環境のために</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-earplugs" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">耳栓</div>
+                  <div class="check-sub">騒音対策</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-powerbank" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">モバイルバッテリー</div>
+                  <div class="check-sub">※預け荷物不可・機内持ち込みのみ</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-toiletries" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">洗顔・歯ブラシ（液体100ml以下）</div>
+                  <div class="check-sub">イスタンブール1泊用</div>
+                </div>
+              </div>
+              <div class="checklist-phase">👕 キャリーバッグ／衣類</div>
+              <div class="check-item" id="chk-pack-tshirts" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">Tシャツ・半袖 × 5枚</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-longsleeve" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">長袖・薄手トップス × 2枚</div>
+                  <div class="check-sub">冷房対策・朝晩の冷えに</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-pants" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">パンツ（ボトムス）× 3本</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-underwear" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">下着・靴下 × 7セット</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-outerwear" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">薄手アウター/パーカー × 1枚</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-swimwear" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">水着 × 1〜2枚</div>
+                  <div class="check-sub">マルタはビーチリゾート</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-sandals" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">サンダル × 1足</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-sneakers" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">スニーカー（履いて行く）</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="checklist-phase">🔌 キャリーバッグ／電気系</div>
+              <div class="check-item" id="chk-plug-adapter" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">変換プラグ（Type G）</div>
+                  <div class="check-sub">マルタ・イギリス式。日本の電化製品はそのまま使えない</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-cables" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">充電ケーブル類</div>
+                  <div class="check-sub">iPhone・各種デバイス用</div>
+                </div>
+              </div>
+              <div class="checklist-phase">💳 キャリーバッグ／貴重品・書類</div>
+              <div class="check-item" id="chk-smbc-card" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">SMBC Olive プラチナプリファード</div>
+                  <div class="check-sub">海外旅行保険付き（傷害・疾病治療300万円）</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-sub-card" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">サブのクレジットカード</div>
+                  <div class="check-sub">万が一のバックアップ</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-euro-pack" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">ユーロ現金（詰める）</div>
+                  <div class="check-sub">両替後にキャリーバッグへ</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-insurance-doc" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">保険証書（英文）</div>
+                  <div class="check-sub">印刷したものをキャリーへ</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-admission-doc" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">入学許可証（英文）</div>
+                  <div class="check-sub">印刷したものをキャリーへ</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-passport-copy-doc" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">パスポートのコピー（詰める）</div>
+                  <div class="check-sub">印刷したものをキャリーへ</div>
+                </div>
+              </div>
+              <div class="checklist-phase">🧴 キャリーバッグ／日用品</div>
+              <div class="check-item" id="chk-sunscreen-pack" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">日焼け止め（詰める）</div>
+                  <div class="check-sub">キャリーバッグに</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-medicine-pack" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">常備薬（詰める）</div>
+                  <div class="check-sub">キャリーバッグに</div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-pack-ecobag" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">エコバッグ</div>
+                  <div class="check-sub">買い物や荷物整理に</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- チェックリスト -->
         <div class="card open" id="card-checklist">
           <div class="card-header" onclick="toggleCard('card-checklist')">
@@ -658,14 +1017,7 @@
                   <div class="check-sub">マルタ滞在終了後6ヶ月以上の有効期限が必要</div>
                 </div>
               </div>
-              <div class="check-item" id="chk-flight-confirm" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">航空券の予約確認書を印刷 or 保存</div>
-                  <div class="check-sub">予約番号：8423261（エアトリ）</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-school-info" onclick="toggleCheck(this)">
+                            <div class="check-item" id="chk-school-info" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">語学学校・アパートの情報を確認</div>
@@ -723,49 +1075,7 @@
               </div>
 
               <div class="checklist-phase">📅 フェーズ2：中盤〜4月下旬</div>
-              <div class="check-item" id="chk-euro-cash" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">ユーロ現金を準備（€150〜200程度）</div>
-                  <div class="check-sub">空港到着直後のバス・タクシー・チップはカード不可の場合あり</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-embassy-contact" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">在マルタ日本大使館の連絡先を控える</div>
-                  <div class="check-sub">パスポート紛失・緊急時の頼り先。スマホへ保存しておく</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-insurance-contact" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">保険会社の海外緊急連絡先を控える</div>
-                  <div class="check-sub">SMBC Oliveの海外旅行保険の緊急連絡先をスマホへ保存</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-esim-setup" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">eSIMを手配・設定</div>
-                  <div class="check-sub">ヨーロッパ対応のeSIM（Airalo等）を事前にインストール</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-insurance-certificate" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">海外旅行保険の英文証明書発行（SMBC Olive）</div>
-                  <div class="check-sub">Olive公式アプリ or 書面で英文証明書を取得・保存</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-admission-letter" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">英文の入学許可証を印刷</div>
-                  <div class="check-sub">語学学校から受け取った書類。入国審査で提示する場合あり</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-payment-check" onclick="toggleCheck(this)">
+                                                                                                  <div class="check-item" id="chk-payment-check" onclick="toggleCheck(this)">
                 <div class="check-box">✓</div>
                 <div>
                   <div class="check-label">海外キャッシング・支払い手段の確認</div>
@@ -773,71 +1083,7 @@
                 </div>
               </div>
 
-              <div class="checklist-phase">📅 フェーズ3：直前〜5月初旬</div>
-              <div class="check-item" id="chk-passport-copy" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">パスポートのコピーを印刷 or スマホ保存</div>
-                  <div class="check-sub">紛失時に再発行手続きがスムーズになる。写真アプリに保存も可</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-plug-adapter" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">変換プラグを準備（マルタはType G：イギリス式）</div>
-                  <div class="check-sub">日本の電化製品はそのまま使えないので要注意</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-medicine" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">常備薬・軽い医薬品を準備</div>
-                  <div class="check-sub">胃腸薬、解熱剤、絆創膏など</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-smbc-card" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">SMBC Olive カードを持参</div>
-                  <div class="check-sub">海外旅行保険付き（傷害・疾病治療300万円）</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-apps-install" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">必須アプリのインストール</div>
-                  <div class="check-sub">Bolt（タクシー）・Google翻訳・Googleマップ・eCabsなど</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-throat-drops" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">のど飴を購入</div>
-                  <div class="check-sub">機内は非常に乾燥するため必須。13時間のフライトで重宝する</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-neck-pillow" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">首枕を準備</div>
-                  <div class="check-sub">13時間フライトで首への負担を大幅に軽減。あるとないとでは快適さが全然違う</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-eye-mask-slippers" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">アイマスク・機内用スリッパを準備</div>
-                  <div class="check-sub">アイマスクは照明・時差対策に。スリッパは足元が冷えやすい機内での快適さを保つ</div>
-                </div>
-              </div>
-              <div class="check-item" id="chk-packing" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">パッキング（イスタンブール1泊用の手荷物を分ける）</div>
-                  <div class="check-sub">機内持込みバッグに1泊分を入れ、預け荷物と分けて整理</div>
-                </div>
-              </div>
-            </div>
+                                                                                                                                          </div>
           </div>
         </div>
 
@@ -2775,12 +3021,26 @@ function loadChecklist() {
 }
 
 function updateProgress() {
-  const items = document.querySelectorAll('.check-item');
-  const checked = document.querySelectorAll('.check-item.checked').length;
-  const total = items.length;
-  const pct = total ? Math.round((checked / total) * 100) : 0;
-  document.getElementById('checkProgress').style.width = pct + '%';
-  document.getElementById('checkLabel').textContent = checked + ' / ' + total + ' 完了';
+  [
+    { cardId: 'card-prep-list',   progressId: 'prepProgress', labelId: 'prepLabel'  },
+    { cardId: 'card-packing-list',progressId: 'packProgress', labelId: 'packLabel'  },
+    { cardId: 'card-checklist',   progressId: 'checkProgress',labelId: 'checkLabel' }
+  ].forEach(function(c) {
+    var card = document.getElementById(c.cardId);
+    if (!card) return;
+    var total   = card.querySelectorAll('.check-item').length;
+    var checked = card.querySelectorAll('.check-item.checked').length;
+    var remaining = total - checked;
+    var pct = total ? Math.round((checked / total) * 100) : 0;
+    var progressEl = document.getElementById(c.progressId);
+    var labelEl    = document.getElementById(c.labelId);
+    if (progressEl) progressEl.style.width = pct + '%';
+    if (labelEl) {
+      labelEl.textContent = remaining === 0
+        ? '✅ すべて完了！'
+        : '残り ' + remaining + ' 件\u3000(' + checked + ' / ' + total + ' 完了)';
+    }
+  });
 }
 
 // ── Fix layout for fixed header ──
