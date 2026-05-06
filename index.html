@@ -2651,7 +2651,7 @@ function saveMemo(cardId, text) {
     localStorage.setItem('malta-memos', JSON.stringify(memos));
   } catch(e) {}
   showSyncIndicator(true);
-  const url = GAS_URL + '?action=save&id=' + encodeURIComponent(key) + '&value=' + encodeURIComponent(text);
+  const url = GAS_URL + '?action=saveMemo&id=' + encodeURIComponent(key) + '&text=' + encodeURIComponent(text);
   fetch(url, { mode: 'no-cors' })
     .catch(e => console.log('GASメモ保存エラー:', e))
     .finally(() => showSyncIndicator(false));
