@@ -547,6 +547,40 @@
     margin-bottom: 8px;
   }
 
+
+  /* ── Card Memo ── */
+  .card-memo {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--stone);
+  }
+  .card-memo-input {
+    width: 100%;
+    min-height: 34px;
+    max-height: 200px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--text);
+    background: rgba(255,255,255,0.5);
+    border: 1px dashed var(--stone);
+    border-radius: 6px;
+    resize: none;
+    overflow: hidden;
+    line-height: 1.5;
+    box-sizing: border-box;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .card-memo-input:focus {
+    outline: none;
+    border-color: var(--sea-light);
+    background: #fff;
+    overflow: auto;
+  }
+  .card-memo-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.55;
+  }
 </style>
 </head>
 <body>
@@ -604,6 +638,14 @@
             <span class="card-chevron">▼</span>
           </div>
           <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-checklist"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-checklist', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
             <div class="progress-bar"><div class="progress-fill" id="checkProgress" style="width:0%"></div></div>
             <div class="progress-label" id="checkLabel">0 / 0 完了</div>
             <div class="checklist" id="checklist">
@@ -2557,14 +2599,16 @@ function loadChecklist() {
       const items = document.querySelectorAll('.check-item');
       items.forEach(item => {
         if (!item.id) return;
-        if (data[item.id] === true) {
+        const val = data[item.id];
+        if (val === true || val === 'true' || val === 'TRUE') {
           item.classList.add('checked');
-        } else if (data[item.id] === false) {
+        } else if (val === false || val === 'false' || val === 'FALSE') {
           item.classList.remove('checked');
         }
       });
       saveToLocalStorage();
       updateProgress();
+      loadMemos(data);
     })
     .catch(e => console.log('GAS読込エラー:', e))
     .finally(() => showSyncIndicator(false));
@@ -2587,9 +2631,50 @@ function adjustLayout() {
 
 window.addEventListener('load', () => {
   loadChecklist();
+  loadMemos();
   adjustLayout();
 });
 window.addEventListener('resize', adjustLayout);
+
+// ── Memo auto-resize ──
+function autoResizeMemo(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 200) + 'px';
+}
+
+// ── Memo sync ──
+function saveMemo(cardId, text) {
+  const key = 'memo-' + cardId;
+  try {
+    const memos = JSON.parse(localStorage.getItem('malta-memos') || '{}');
+    memos[key] = text;
+    localStorage.setItem('malta-memos', JSON.stringify(memos));
+  } catch(e) {}
+  showSyncIndicator(true);
+  const url = GAS_URL + '?action=save&id=' + encodeURIComponent(key) + '&value=' + encodeURIComponent(text);
+  fetch(url, { mode: 'no-cors' })
+    .catch(e => console.log('GASメモ保存エラー:', e))
+    .finally(() => showSyncIndicator(false));
+}
+
+function loadMemos(gasData) {
+  try {
+    const memos = JSON.parse(localStorage.getItem('malta-memos') || '{}');
+    document.querySelectorAll('.card-memo-input').forEach(el => {
+      const key = el.dataset.memoKey;
+      if (key && memos[key]) { el.value = memos[key]; autoResizeMemo(el); }
+    });
+  } catch(e) {}
+  if (gasData) {
+    document.querySelectorAll('.card-memo-input').forEach(el => {
+      const key = el.dataset.memoKey;
+      if (key && gasData[key] !== undefined && gasData[key] !== false && gasData[key] !== '') {
+        el.value = String(gasData[key]);
+        autoResizeMemo(el);
+      }
+    });
+  }
+}
 </script>
 </body>
 </html>
