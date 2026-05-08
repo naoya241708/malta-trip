@@ -729,6 +729,28 @@
   transition: color 0.15s;
 }
 .pocb-qty-num.has-qty { color: var(--sea); }
+
+/* ━━━ マイリスト 品名入力 ━━━ */
+.ml-name-input {
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  border: 1px dashed var(--stone);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text);
+  background: rgba(255,255,255,0.7);
+  box-sizing: border-box;
+}
+.ml-name-input:focus {
+  outline: none;
+  border-color: var(--sea-light);
+  background: #fff;
+  border-style: solid;
+}
+.ml-name-input::placeholder { color: var(--text-muted); opacity: 0.5; font-weight: 400; }
 </style>
 </head>
 <body>
@@ -763,8 +785,6 @@
       <button class="tab-btn" onclick="showTab('stay')">マルタ延泊</button>
       <button class="tab-btn" onclick="showTab('return')">復路</button>
   <button class="tab-btn" onclick="showTab('souvenir')">お土産</button>
-  <button class="tab-btn" onclick="showTab('poc-a')">🗒 試作A</button>
-  <button class="tab-btn" onclick="showTab('poc-b')">🏷 試作B</button>
     </div>
   </div>
 
@@ -3507,7 +3527,7 @@
           </div>
         </div>
 
-        <div class="card open" id="card-souvenir-mylist">
+                <div class="card open" id="card-souvenir-mylist">
           <div class="card-header" onclick="toggleCard('card-souvenir-mylist')">
             <span class="card-icon">📝</span>
             <span class="card-title">マイお土産リスト</span>
@@ -3522,44 +3542,155 @@
                           onblur="saveMemo('card-souvenir-mylist', this.value)"
                           oninput="autoResizeMemo(this)"></textarea>
               </div>
-            <div class="note">
-              <div class="note-label">✏️ 使い方</div>
-              欲しいものをメモ欄に書き込もう。買えたらチェック！
+            <div class="pocb-item ml-item" id="ml-1">
+              <input class="ml-name-input" id="ml-1-name"
+                     type="text" placeholder="お土産の品名を入力..."
+                     onblur="saveMl('ml-1')">
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleMlChip('ml-1','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleMlChip('ml-1','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleMlChip('ml-1','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleMlChip('ml-1','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="ml-1-for"
+                         type="text" placeholder="誰に？（例：田中さん）"
+                         onblur="saveMl('ml-1')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-1',-1)">−</button>
+                    <span class="pocb-qty-num" id="ml-1-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-1',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleMlBought('ml-1')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="checklist">
-              <div class="check-item" id="chk-souvenir-1" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">お土産①</div>
-                  <div class="check-sub"></div>
+            <div class="pocb-item ml-item" id="ml-2">
+              <input class="ml-name-input" id="ml-2-name"
+                     type="text" placeholder="お土産の品名を入力..."
+                     onblur="saveMl('ml-2')">
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleMlChip('ml-2','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleMlChip('ml-2','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleMlChip('ml-2','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleMlChip('ml-2','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="ml-2-for"
+                         type="text" placeholder="誰に？（例：田中さん）"
+                         onblur="saveMl('ml-2')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-2',-1)">−</button>
+                    <span class="pocb-qty-num" id="ml-2-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-2',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleMlBought('ml-2')">購入済み ✓</button>
                 </div>
               </div>
-              <div class="check-item" id="chk-souvenir-2" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">お土産②</div>
-                  <div class="check-sub"></div>
+            </div>
+            <div class="pocb-item ml-item" id="ml-3">
+              <input class="ml-name-input" id="ml-3-name"
+                     type="text" placeholder="お土産の品名を入力..."
+                     onblur="saveMl('ml-3')">
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleMlChip('ml-3','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleMlChip('ml-3','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleMlChip('ml-3','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleMlChip('ml-3','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="ml-3-for"
+                         type="text" placeholder="誰に？（例：田中さん）"
+                         onblur="saveMl('ml-3')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-3',-1)">−</button>
+                    <span class="pocb-qty-num" id="ml-3-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-3',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleMlBought('ml-3')">購入済み ✓</button>
                 </div>
               </div>
-              <div class="check-item" id="chk-souvenir-3" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">お土産③</div>
-                  <div class="check-sub"></div>
+            </div>
+            <div class="pocb-item ml-item" id="ml-4">
+              <input class="ml-name-input" id="ml-4-name"
+                     type="text" placeholder="お土産の品名を入力..."
+                     onblur="saveMl('ml-4')">
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleMlChip('ml-4','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleMlChip('ml-4','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleMlChip('ml-4','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleMlChip('ml-4','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="ml-4-for"
+                         type="text" placeholder="誰に？（例：田中さん）"
+                         onblur="saveMl('ml-4')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-4',-1)">−</button>
+                    <span class="pocb-qty-num" id="ml-4-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-4',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleMlBought('ml-4')">購入済み ✓</button>
                 </div>
               </div>
-              <div class="check-item" id="chk-souvenir-4" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">お土産④</div>
-                  <div class="check-sub"></div>
+            </div>
+            <div class="pocb-item ml-item" id="ml-5">
+              <input class="ml-name-input" id="ml-5-name"
+                     type="text" placeholder="お土産の品名を入力..."
+                     onblur="saveMl('ml-5')">
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleMlChip('ml-5','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleMlChip('ml-5','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleMlChip('ml-5','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleMlChip('ml-5','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="ml-5-for"
+                         type="text" placeholder="誰に？（例：田中さん）"
+                         onblur="saveMl('ml-5')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-5',-1)">−</button>
+                    <span class="pocb-qty-num" id="ml-5-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-5',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleMlBought('ml-5')">購入済み ✓</button>
                 </div>
               </div>
-              <div class="check-item" id="chk-souvenir-5" onclick="toggleCheck(this)">
-                <div class="check-box">✓</div>
-                <div>
-                  <div class="check-label">お土産⑤</div>
-                  <div class="check-sub"></div>
+            </div>
+            <div class="pocb-item ml-item" id="ml-6">
+              <input class="ml-name-input" id="ml-6-name"
+                     type="text" placeholder="お土産の品名を入力..."
+                     onblur="saveMl('ml-6')">
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleMlChip('ml-6','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleMlChip('ml-6','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleMlChip('ml-6','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleMlChip('ml-6','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="ml-6-for"
+                         type="text" placeholder="誰に？（例：田中さん）"
+                         onblur="saveMl('ml-6')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-6',-1)">−</button>
+                    <span class="pocb-qty-num" id="ml-6-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-6',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleMlBought('ml-6')">購入済み ✓</button>
+                </div>
+              </div>
+            </div>
+            <div class="pocb-item ml-item" id="ml-7">
+              <input class="ml-name-input" id="ml-7-name"
+                     type="text" placeholder="お土産の品名を入力..."
+                     onblur="saveMl('ml-7')">
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleMlChip('ml-7','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleMlChip('ml-7','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleMlChip('ml-7','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleMlChip('ml-7','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="ml-7-for"
+                         type="text" placeholder="誰に？（例：田中さん）"
+                         onblur="saveMl('ml-7')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-7',-1)">−</button>
+                    <span class="pocb-qty-num" id="ml-7-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-7',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleMlBought('ml-7')">購入済み ✓</button>
+                </div>
+              </div>
+            </div>
+            <div class="pocb-item ml-item" id="ml-8">
+              <input class="ml-name-input" id="ml-8-name"
+                     type="text" placeholder="お土産の品名を入力..."
+                     onblur="saveMl('ml-8')">
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleMlChip('ml-8','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleMlChip('ml-8','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleMlChip('ml-8','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleMlChip('ml-8','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="ml-8-for"
+                         type="text" placeholder="誰に？（例：田中さん）"
+                         onblur="saveMl('ml-8')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-8',-1)">−</button>
+                    <span class="pocb-qty-num" id="ml-8-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustMlQty('ml-8',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleMlBought('ml-8')">購入済み ✓</button>
                 </div>
               </div>
             </div>
@@ -3568,267 +3699,8 @@
 
       </div>
     </div>
-    <div class="tab-panel" id="tab-poc-a">
-      <div class="phase-hero">
-        <div class="phase-icon">🗒️</div>
-        <div class="phase-title">試作A：購入管理テーブル</div>
-        <div class="phase-date">品名・誰向け・金額を自由入力</div>
-        <div class="phase-desc">チェック＋テキスト入力で管理するシンプルな一覧形式。入力した内容はこのデバイスに保存されます。</div>
-      </div>
-      <div class="cards">
-        <div class="card open" id="card-poc-a">
-          <div class="card-header" onclick="toggleCard('card-poc-a')">
-            <span class="card-icon">🛒</span>
-            <span class="card-title">お土産購入リスト</span>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="poca-summary" id="poca-label">0 / 12 購入済み</div>
-            <div class="poca-header">
-              <div class="poca-header-chk">✓</div>
-              <div class="poca-header-name">品名</div>
-              <div class="poca-header-for">誰に</div>
-              <div class="poca-header-price">金額</div>
-            </div>
-              <div class="poca-row" id="poca-row-1">
-                <div class="poca-chk" id="poca-chk-1" onclick="togglePocA(1)">✓</div>
-                <input class="poca-name" id="poca-name-1" type="text" placeholder="何を買う？" onblur="savePocARow(1)">
-                <input class="poca-for"  id="poca-for-1" type="text" placeholder="誰に？"    onblur="savePocARow(1)">
-                <input class="poca-price"id="poca-price-1" type="text" placeholder="€"        onblur="savePocARow(1)">
-              </div>
-              <div class="poca-row" id="poca-row-2">
-                <div class="poca-chk" id="poca-chk-2" onclick="togglePocA(2)">✓</div>
-                <input class="poca-name" id="poca-name-2" type="text" placeholder="何を買う？" onblur="savePocARow(2)">
-                <input class="poca-for"  id="poca-for-2" type="text" placeholder="誰に？"    onblur="savePocARow(2)">
-                <input class="poca-price"id="poca-price-2" type="text" placeholder="€"        onblur="savePocARow(2)">
-              </div>
-              <div class="poca-row" id="poca-row-3">
-                <div class="poca-chk" id="poca-chk-3" onclick="togglePocA(3)">✓</div>
-                <input class="poca-name" id="poca-name-3" type="text" placeholder="何を買う？" onblur="savePocARow(3)">
-                <input class="poca-for"  id="poca-for-3" type="text" placeholder="誰に？"    onblur="savePocARow(3)">
-                <input class="poca-price"id="poca-price-3" type="text" placeholder="€"        onblur="savePocARow(3)">
-              </div>
-              <div class="poca-row" id="poca-row-4">
-                <div class="poca-chk" id="poca-chk-4" onclick="togglePocA(4)">✓</div>
-                <input class="poca-name" id="poca-name-4" type="text" placeholder="何を買う？" onblur="savePocARow(4)">
-                <input class="poca-for"  id="poca-for-4" type="text" placeholder="誰に？"    onblur="savePocARow(4)">
-                <input class="poca-price"id="poca-price-4" type="text" placeholder="€"        onblur="savePocARow(4)">
-              </div>
-              <div class="poca-row" id="poca-row-5">
-                <div class="poca-chk" id="poca-chk-5" onclick="togglePocA(5)">✓</div>
-                <input class="poca-name" id="poca-name-5" type="text" placeholder="何を買う？" onblur="savePocARow(5)">
-                <input class="poca-for"  id="poca-for-5" type="text" placeholder="誰に？"    onblur="savePocARow(5)">
-                <input class="poca-price"id="poca-price-5" type="text" placeholder="€"        onblur="savePocARow(5)">
-              </div>
-              <div class="poca-row" id="poca-row-6">
-                <div class="poca-chk" id="poca-chk-6" onclick="togglePocA(6)">✓</div>
-                <input class="poca-name" id="poca-name-6" type="text" placeholder="何を買う？" onblur="savePocARow(6)">
-                <input class="poca-for"  id="poca-for-6" type="text" placeholder="誰に？"    onblur="savePocARow(6)">
-                <input class="poca-price"id="poca-price-6" type="text" placeholder="€"        onblur="savePocARow(6)">
-              </div>
-              <div class="poca-row" id="poca-row-7">
-                <div class="poca-chk" id="poca-chk-7" onclick="togglePocA(7)">✓</div>
-                <input class="poca-name" id="poca-name-7" type="text" placeholder="何を買う？" onblur="savePocARow(7)">
-                <input class="poca-for"  id="poca-for-7" type="text" placeholder="誰に？"    onblur="savePocARow(7)">
-                <input class="poca-price"id="poca-price-7" type="text" placeholder="€"        onblur="savePocARow(7)">
-              </div>
-              <div class="poca-row" id="poca-row-8">
-                <div class="poca-chk" id="poca-chk-8" onclick="togglePocA(8)">✓</div>
-                <input class="poca-name" id="poca-name-8" type="text" placeholder="何を買う？" onblur="savePocARow(8)">
-                <input class="poca-for"  id="poca-for-8" type="text" placeholder="誰に？"    onblur="savePocARow(8)">
-                <input class="poca-price"id="poca-price-8" type="text" placeholder="€"        onblur="savePocARow(8)">
-              </div>
-              <div class="poca-row" id="poca-row-9">
-                <div class="poca-chk" id="poca-chk-9" onclick="togglePocA(9)">✓</div>
-                <input class="poca-name" id="poca-name-9" type="text" placeholder="何を買う？" onblur="savePocARow(9)">
-                <input class="poca-for"  id="poca-for-9" type="text" placeholder="誰に？"    onblur="savePocARow(9)">
-                <input class="poca-price"id="poca-price-9" type="text" placeholder="€"        onblur="savePocARow(9)">
-              </div>
-              <div class="poca-row" id="poca-row-10">
-                <div class="poca-chk" id="poca-chk-10" onclick="togglePocA(10)">✓</div>
-                <input class="poca-name" id="poca-name-10" type="text" placeholder="何を買う？" onblur="savePocARow(10)">
-                <input class="poca-for"  id="poca-for-10" type="text" placeholder="誰に？"    onblur="savePocARow(10)">
-                <input class="poca-price"id="poca-price-10" type="text" placeholder="€"        onblur="savePocARow(10)">
-              </div>
-              <div class="poca-row" id="poca-row-11">
-                <div class="poca-chk" id="poca-chk-11" onclick="togglePocA(11)">✓</div>
-                <input class="poca-name" id="poca-name-11" type="text" placeholder="何を買う？" onblur="savePocARow(11)">
-                <input class="poca-for"  id="poca-for-11" type="text" placeholder="誰に？"    onblur="savePocARow(11)">
-                <input class="poca-price"id="poca-price-11" type="text" placeholder="€"        onblur="savePocARow(11)">
-              </div>
-              <div class="poca-row" id="poca-row-12">
-                <div class="poca-chk" id="poca-chk-12" onclick="togglePocA(12)">✓</div>
-                <input class="poca-name" id="poca-name-12" type="text" placeholder="何を買う？" onblur="savePocARow(12)">
-                <input class="poca-for"  id="poca-for-12" type="text" placeholder="誰に？"    onblur="savePocARow(12)">
-                <input class="poca-price"id="poca-price-12" type="text" placeholder="€"        onblur="savePocARow(12)">
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="tab-panel" id="tab-poc-b">
-      <div class="phase-hero">
-        <div class="phase-icon">🏷️</div>
-        <div class="phase-title">試作B：情報カード拡張型</div>
-        <div class="phase-date">誰向けタグ＋購入済みトグル</div>
-        <div class="phase-desc">お土産情報の横にタグで「誰向け」を選び、「購入済み」ボタンで管理するインタラクティブ形式。</div>
-      </div>
-      <div class="cards">
-        <div class="card open" id="card-poc-b">
-          <div class="card-header" onclick="toggleCard('card-poc-b')">
-            <span class="card-icon">🛍️</span>
-            <span class="card-title">サンプルお土産（8品）</span>
-            <span class="card-chevron">▼</span>
-          </div>
-          <div class="card-body">
-            <div class="pocb-item" id="pocb-honey">
-              <div class="pocb-title">はちみつ（Gozo産）</div>
-              <div class="pocb-desc">Gozo島の濃厚な野花はちみつ。高品質で日本へのお土産に最適。€6.50〜（250g）</div>
-              <div class="pocb-controls">
-                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-honey','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-honey','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-honey','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-honey','職場')">職場</button></div>
-                <div class="pocb-actions-row">
-                  <input class="pocb-for-input" id="pocb-honey-for"
-                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
-                         onblur="savePocBItem('pocb-honey')">
-                  <div class="pocb-qty">
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-honey',-1)">−</button>
-                    <span class="pocb-qty-num" id="pocb-honey-qty">0</span>
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-honey',1)">＋</button>
-                  </div>
-                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-honey')">購入済み ✓</button>
-                </div>
-              </div>
-            </div>
-            <div class="pocb-item" id="pocb-kinnie">
-              <div class="pocb-title">Kinnie（キニー）</div>
-              <div class="pocb-desc">マルタのコーラ的存在。オレンジ＆ハーブ風味の炭酸飲料。€1.50/L</div>
-              <div class="pocb-controls">
-                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-kinnie','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-kinnie','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-kinnie','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-kinnie','職場')">職場</button></div>
-                <div class="pocb-actions-row">
-                  <input class="pocb-for-input" id="pocb-kinnie-for"
-                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
-                         onblur="savePocBItem('pocb-kinnie')">
-                  <div class="pocb-qty">
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-kinnie',-1)">−</button>
-                    <span class="pocb-qty-num" id="pocb-kinnie-qty">0</span>
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-kinnie',1)">＋</button>
-                  </div>
-                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-kinnie')">購入済み ✓</button>
-                </div>
-              </div>
-            </div>
-            <div class="pocb-item" id="pocb-twistees">
-              <div class="pocb-title">Twistees（ツイスティーズ）</div>
-              <div class="pocb-desc">マルタ国民的チーズスナック。複数フレーバーあり。€0.80（50g）</div>
-              <div class="pocb-controls">
-                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-twistees','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-twistees','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-twistees','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-twistees','職場')">職場</button></div>
-                <div class="pocb-actions-row">
-                  <input class="pocb-for-input" id="pocb-twistees-for"
-                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
-                         onblur="savePocBItem('pocb-twistees')">
-                  <div class="pocb-qty">
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-twistees',-1)">−</button>
-                    <span class="pocb-qty-num" id="pocb-twistees-qty">0</span>
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-twistees',1)">＋</button>
-                  </div>
-                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-twistees')">購入済み ✓</button>
-                </div>
-              </div>
-            </div>
-            <div class="pocb-item" id="pocb-maltesers">
-              <div class="pocb-title">Maltesers（モルティーザーズ）</div>
-              <div class="pocb-desc">サクサクのキャラメル入りチョコ。日本では未販売のため喜ばれる。€1.20〜</div>
-              <div class="pocb-controls">
-                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-maltesers','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-maltesers','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-maltesers','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-maltesers','職場')">職場</button></div>
-                <div class="pocb-actions-row">
-                  <input class="pocb-for-input" id="pocb-maltesers-for"
-                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
-                         onblur="savePocBItem('pocb-maltesers')">
-                  <div class="pocb-qty">
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-maltesers',-1)">−</button>
-                    <span class="pocb-qty-num" id="pocb-maltesers-qty">0</span>
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-maltesers',1)">＋</button>
-                  </div>
-                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-maltesers')">購入済み ✓</button>
-                </div>
-              </div>
-            </div>
-            <div class="pocb-item" id="pocb-nougat">
-              <div class="pocb-title">ヌガー</div>
-              <div class="pocb-desc">お祭り定番のナッツ入りキャンディ。個包装で配りやすい。€1.50〜</div>
-              <div class="pocb-controls">
-                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-nougat','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-nougat','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-nougat','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-nougat','職場')">職場</button></div>
-                <div class="pocb-actions-row">
-                  <input class="pocb-for-input" id="pocb-nougat-for"
-                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
-                         onblur="savePocBItem('pocb-nougat')">
-                  <div class="pocb-qty">
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-nougat',-1)">−</button>
-                    <span class="pocb-qty-num" id="pocb-nougat-qty">0</span>
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-nougat',1)">＋</button>
-                  </div>
-                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-nougat')">購入済み ✓</button>
-                </div>
-              </div>
-            </div>
-            <div class="pocb-item" id="pocb-filigree">
-              <div class="pocb-title">フィリグリー細工</div>
-              <div class="pocb-desc">マルタ伝統の細工銀アクセサリー。繊細な銀線細工。€10〜</div>
-              <div class="pocb-controls">
-                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-filigree','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-filigree','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-filigree','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-filigree','職場')">職場</button></div>
-                <div class="pocb-actions-row">
-                  <input class="pocb-for-input" id="pocb-filigree-for"
-                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
-                         onblur="savePocBItem('pocb-filigree')">
-                  <div class="pocb-qty">
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-filigree',-1)">−</button>
-                    <span class="pocb-qty-num" id="pocb-filigree-qty">0</span>
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-filigree',1)">＋</button>
-                  </div>
-                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-filigree')">購入済み ✓</button>
-                </div>
-              </div>
-            </div>
-            <div class="pocb-item" id="pocb-tiles">
-              <div class="pocb-title">マルタタイル</div>
-              <div class="pocb-desc">歴史的建物の幾何学模様を再現したタイルコースター。€10〜/枚</div>
-              <div class="pocb-controls">
-                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-tiles','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-tiles','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-tiles','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-tiles','職場')">職場</button></div>
-                <div class="pocb-actions-row">
-                  <input class="pocb-for-input" id="pocb-tiles-for"
-                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
-                         onblur="savePocBItem('pocb-tiles')">
-                  <div class="pocb-qty">
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-tiles',-1)">−</button>
-                    <span class="pocb-qty-num" id="pocb-tiles-qty">0</span>
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-tiles',1)">＋</button>
-                  </div>
-                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-tiles')">購入済み ✓</button>
-                </div>
-              </div>
-            </div>
-            <div class="pocb-item" id="pocb-soap">
-              <div class="pocb-title">マルタソープ</div>
-              <div class="pocb-desc">ローカルハーブ・自然素材の手作り石鹸。€4〜/個</div>
-              <div class="pocb-controls">
-                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-soap','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-soap','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-soap','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-soap','職場')">職場</button></div>
-                <div class="pocb-actions-row">
-                  <input class="pocb-for-input" id="pocb-soap-for"
-                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
-                         onblur="savePocBItem('pocb-soap')">
-                  <div class="pocb-qty">
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-soap',-1)">−</button>
-                    <span class="pocb-qty-num" id="pocb-soap-qty">0</span>
-                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-soap',1)">＋</button>
-                  </div>
-                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-soap')">購入済み ✓</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+    
 
   </div><!-- end content-area -->
 </div><!-- end app-wrapper -->
@@ -3955,9 +3827,8 @@ function adjustLayout() {
 window.addEventListener('load', () => {
   loadChecklist();
   loadMemos();
-  loadPocA();
-  loadPocB();
   loadSv();
+  loadMl();
   adjustLayout();
 });
 window.addEventListener('resize', adjustLayout);
@@ -4170,6 +4041,75 @@ function loadSv() {
     if (d.qty) {
       var qtyEl = document.getElementById(itemId + '-qty');
       if (qtyEl) { qtyEl.textContent = d.qty; if(d.qty>0) qtyEl.classList.add('has-qty'); }
+    }
+    if (d.forText) {
+      var forEl = document.getElementById(itemId + '-for');
+      if (forEl) forEl.value = d.forText;
+    }
+  });
+}
+
+// ━━━ マイお土産リスト ━━━
+var ML_KEY = 'malta-mylist';
+
+function saveMl(itemId) {
+  var item = document.getElementById(itemId);
+  if (!item) return;
+  var data = JSON.parse(localStorage.getItem(ML_KEY) || '{}');
+  var selected = Array.from(item.querySelectorAll('.pocb-chip.selected')).map(function(c){ return c.dataset.for; });
+  var qtyEl  = document.getElementById(itemId + '-qty');
+  var forEl  = document.getElementById(itemId + '-for');
+  var nameEl = document.getElementById(itemId + '-name');
+  data[itemId] = {
+    name:    nameEl ? nameEl.value : '',
+    bought:  item.classList.contains('pocb-bought'),
+    forWho:  selected,
+    qty:     qtyEl ? parseInt(qtyEl.textContent,10)||0 : 0,
+    forText: forEl ? forEl.value : ''
+  };
+  localStorage.setItem(ML_KEY, JSON.stringify(data));
+}
+
+function toggleMlChip(itemId, recipient) {
+  var item = document.getElementById(itemId);
+  if (!item) return;
+  var chip = item.querySelector('.pocb-chip[data-for="' + recipient + '"]');
+  if (chip) chip.classList.toggle('selected');
+  saveMl(itemId);
+}
+
+function toggleMlBought(itemId) {
+  var item = document.getElementById(itemId);
+  if (!item) return;
+  item.classList.toggle('pocb-bought');
+  saveMl(itemId);
+}
+
+function adjustMlQty(itemId, delta) {
+  var qtyEl = document.getElementById(itemId + '-qty');
+  if (!qtyEl) return;
+  var next = Math.max(0, (parseInt(qtyEl.textContent,10)||0) + delta);
+  qtyEl.textContent = next;
+  next > 0 ? qtyEl.classList.add('has-qty') : qtyEl.classList.remove('has-qty');
+  saveMl(itemId);
+}
+
+function loadMl() {
+  var data = JSON.parse(localStorage.getItem(ML_KEY) || '{}');
+  Object.keys(data).forEach(function(itemId) {
+    var item = document.getElementById(itemId);
+    if (!item) return;
+    var d = data[itemId];
+    var nameEl = document.getElementById(itemId + '-name');
+    if (nameEl && d.name) nameEl.value = d.name;
+    if (d.bought) item.classList.add('pocb-bought');
+    (d.forWho || []).forEach(function(r) {
+      var chip = item.querySelector('.pocb-chip[data-for="' + r + '"]');
+      if (chip) chip.classList.add('selected');
+    });
+    if (d.qty) {
+      var qtyEl = document.getElementById(itemId + '-qty');
+      if (qtyEl) { qtyEl.textContent = d.qty; if (d.qty > 0) qtyEl.classList.add('has-qty'); }
     }
     if (d.forText) {
       var forEl = document.getElementById(itemId + '-for');
