@@ -662,7 +662,30 @@
   font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px;
 }
 .pocb-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; line-height: 1.5; }
-.pocb-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+.pocb-controls { display: flex; flex-direction: column; gap: 7px; }
+.pocb-chips-row { display: flex; flex-wrap: wrap; gap: 5px; }
+.pocb-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pocb-for-input {
+  flex: 1;
+  min-width: 80px;
+  padding: 5px 9px;
+  border: 1px solid var(--stone);
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  background: rgba(255,255,255,0.7);
+  color: var(--text);
+}
+.pocb-for-input:focus {
+  outline: none;
+  border-color: var(--sea-light);
+  background: #fff;
+}
+.pocb-for-input::placeholder { color: var(--text-muted); opacity: 0.6; }
 .pocb-chip {
   padding: 3px 11px; border: 1px solid var(--stone); border-radius: 12px;
   font-size: 11px; font-family: inherit; cursor: pointer;
@@ -3396,104 +3419,144 @@
               <div class="pocb-title">はちみつ（Gozo産）</div>
               <div class="pocb-desc">Gozo島の濃厚な野花はちみつ。高品質で日本へのお土産に最適。€6.50〜（250g）</div>
               <div class="pocb-controls">
-                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-honey','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-honey','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-honey','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-honey','職場')">職場</button>
-                <div class="pocb-qty">
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-honey',-1)">−</button>
-                  <span class="pocb-qty-num" id="pocb-honey-qty">0</span>
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-honey',1)">＋</button>
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-honey','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-honey','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-honey','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-honey','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="pocb-honey-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="savePocBItem('pocb-honey')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-honey',-1)">−</button>
+                    <span class="pocb-qty-num" id="pocb-honey-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-honey',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-honey')">購入済み ✓</button>
                 </div>
-                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-honey')">購入済み ✓</button>
               </div>
             </div>
             <div class="pocb-item" id="pocb-kinnie">
               <div class="pocb-title">Kinnie（キニー）</div>
               <div class="pocb-desc">マルタのコーラ的存在。オレンジ＆ハーブ風味の炭酸飲料。€1.50/L</div>
               <div class="pocb-controls">
-                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-kinnie','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-kinnie','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-kinnie','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-kinnie','職場')">職場</button>
-                <div class="pocb-qty">
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-kinnie',-1)">−</button>
-                  <span class="pocb-qty-num" id="pocb-kinnie-qty">0</span>
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-kinnie',1)">＋</button>
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-kinnie','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-kinnie','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-kinnie','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-kinnie','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="pocb-kinnie-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="savePocBItem('pocb-kinnie')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-kinnie',-1)">−</button>
+                    <span class="pocb-qty-num" id="pocb-kinnie-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-kinnie',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-kinnie')">購入済み ✓</button>
                 </div>
-                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-kinnie')">購入済み ✓</button>
               </div>
             </div>
             <div class="pocb-item" id="pocb-twistees">
               <div class="pocb-title">Twistees（ツイスティーズ）</div>
               <div class="pocb-desc">マルタ国民的チーズスナック。複数フレーバーあり。€0.80（50g）</div>
               <div class="pocb-controls">
-                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-twistees','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-twistees','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-twistees','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-twistees','職場')">職場</button>
-                <div class="pocb-qty">
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-twistees',-1)">−</button>
-                  <span class="pocb-qty-num" id="pocb-twistees-qty">0</span>
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-twistees',1)">＋</button>
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-twistees','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-twistees','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-twistees','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-twistees','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="pocb-twistees-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="savePocBItem('pocb-twistees')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-twistees',-1)">−</button>
+                    <span class="pocb-qty-num" id="pocb-twistees-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-twistees',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-twistees')">購入済み ✓</button>
                 </div>
-                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-twistees')">購入済み ✓</button>
               </div>
             </div>
             <div class="pocb-item" id="pocb-maltesers">
               <div class="pocb-title">Maltesers（モルティーザーズ）</div>
               <div class="pocb-desc">サクサクのキャラメル入りチョコ。日本では未販売のため喜ばれる。€1.20〜</div>
               <div class="pocb-controls">
-                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-maltesers','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-maltesers','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-maltesers','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-maltesers','職場')">職場</button>
-                <div class="pocb-qty">
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-maltesers',-1)">−</button>
-                  <span class="pocb-qty-num" id="pocb-maltesers-qty">0</span>
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-maltesers',1)">＋</button>
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-maltesers','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-maltesers','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-maltesers','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-maltesers','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="pocb-maltesers-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="savePocBItem('pocb-maltesers')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-maltesers',-1)">−</button>
+                    <span class="pocb-qty-num" id="pocb-maltesers-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-maltesers',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-maltesers')">購入済み ✓</button>
                 </div>
-                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-maltesers')">購入済み ✓</button>
               </div>
             </div>
             <div class="pocb-item" id="pocb-nougat">
               <div class="pocb-title">ヌガー</div>
               <div class="pocb-desc">お祭り定番のナッツ入りキャンディ。個包装で配りやすい。€1.50〜</div>
               <div class="pocb-controls">
-                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-nougat','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-nougat','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-nougat','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-nougat','職場')">職場</button>
-                <div class="pocb-qty">
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-nougat',-1)">−</button>
-                  <span class="pocb-qty-num" id="pocb-nougat-qty">0</span>
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-nougat',1)">＋</button>
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-nougat','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-nougat','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-nougat','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-nougat','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="pocb-nougat-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="savePocBItem('pocb-nougat')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-nougat',-1)">−</button>
+                    <span class="pocb-qty-num" id="pocb-nougat-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-nougat',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-nougat')">購入済み ✓</button>
                 </div>
-                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-nougat')">購入済み ✓</button>
               </div>
             </div>
             <div class="pocb-item" id="pocb-filigree">
               <div class="pocb-title">フィリグリー細工</div>
               <div class="pocb-desc">マルタ伝統の細工銀アクセサリー。繊細な銀線細工。€10〜</div>
               <div class="pocb-controls">
-                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-filigree','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-filigree','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-filigree','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-filigree','職場')">職場</button>
-                <div class="pocb-qty">
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-filigree',-1)">−</button>
-                  <span class="pocb-qty-num" id="pocb-filigree-qty">0</span>
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-filigree',1)">＋</button>
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-filigree','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-filigree','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-filigree','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-filigree','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="pocb-filigree-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="savePocBItem('pocb-filigree')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-filigree',-1)">−</button>
+                    <span class="pocb-qty-num" id="pocb-filigree-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-filigree',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-filigree')">購入済み ✓</button>
                 </div>
-                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-filigree')">購入済み ✓</button>
               </div>
             </div>
             <div class="pocb-item" id="pocb-tiles">
               <div class="pocb-title">マルタタイル</div>
               <div class="pocb-desc">歴史的建物の幾何学模様を再現したタイルコースター。€10〜/枚</div>
               <div class="pocb-controls">
-                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-tiles','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-tiles','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-tiles','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-tiles','職場')">職場</button>
-                <div class="pocb-qty">
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-tiles',-1)">−</button>
-                  <span class="pocb-qty-num" id="pocb-tiles-qty">0</span>
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-tiles',1)">＋</button>
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-tiles','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-tiles','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-tiles','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-tiles','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="pocb-tiles-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="savePocBItem('pocb-tiles')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-tiles',-1)">−</button>
+                    <span class="pocb-qty-num" id="pocb-tiles-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-tiles',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-tiles')">購入済み ✓</button>
                 </div>
-                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-tiles')">購入済み ✓</button>
               </div>
             </div>
             <div class="pocb-item" id="pocb-soap">
               <div class="pocb-title">マルタソープ</div>
               <div class="pocb-desc">ローカルハーブ・自然素材の手作り石鹸。€4〜/個</div>
               <div class="pocb-controls">
-                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-soap','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-soap','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-soap','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-soap','職場')">職場</button>
-                <div class="pocb-qty">
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-soap',-1)">−</button>
-                  <span class="pocb-qty-num" id="pocb-soap-qty">0</span>
-                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-soap',1)">＋</button>
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-soap','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-soap','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-soap','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-soap','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="pocb-soap-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="savePocBItem('pocb-soap')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-soap',-1)">−</button>
+                    <span class="pocb-qty-num" id="pocb-soap-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-soap',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-soap')">購入済み ✓</button>
                 </div>
-                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-soap')">購入済み ✓</button>
               </div>
             </div>
           </div>
@@ -3743,9 +3806,11 @@ function savePocBItem(itemId) {
   if (!item) return;
   var data = JSON.parse(localStorage.getItem('malta-poc-b') || '{}');
   var selected = Array.from(item.querySelectorAll('.pocb-chip.selected')).map(function(c){ return c.dataset.for; });
-  var qtyEl = document.getElementById(itemId + '-qty');
-  var qty = qtyEl ? parseInt(qtyEl.textContent, 10) || 0 : 0;
-  data[itemId] = { bought: item.classList.contains('pocb-bought'), forWho: selected, qty: qty };
+  var qtyEl   = document.getElementById(itemId + '-qty');
+  var forEl   = document.getElementById(itemId + '-for');
+  var qty     = qtyEl ? parseInt(qtyEl.textContent, 10) || 0 : 0;
+  var forText = forEl ? forEl.value : '';
+  data[itemId] = { bought: item.classList.contains('pocb-bought'), forWho: selected, qty: qty, forText: forText };
   localStorage.setItem('malta-poc-b', JSON.stringify(data));
 }
 function loadPocB() {
@@ -3762,6 +3827,10 @@ function loadPocB() {
     if (d.qty) {
       var qtyEl = document.getElementById(itemId + '-qty');
       if (qtyEl) { qtyEl.textContent = d.qty; if (d.qty > 0) qtyEl.classList.add('has-qty'); }
+    }
+    if (d.forText) {
+      var forEl = document.getElementById(itemId + '-for');
+      if (forEl) forEl.value = d.forText;
     }
   });
 }
