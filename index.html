@@ -3279,6 +3279,118 @@
             </div>
           </div>
         </div>
+        <div class="card open" id="card-return-malta">
+          <div class="card-header" onclick="toggleCard('card-return-malta')">
+            <span class="card-icon">🛫</span>
+            <span class="card-title">復路① マルタ空港→イスタンブール（6/2）</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-return-malta"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-return-malta', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
+            <table class="timeline-table">
+              <thead><tr><th>時間</th><th>やること</th><th></th></tr></thead>
+              <tbody>
+              <tr>
+                <td class="tl-time">17:25</td>
+                <td>マルタ空港到着（出発2時間前）</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">17:25〜19:00</td>
+                <td>チェックイン・保安検査・出国審査</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr class="tl-depart">
+                <td class="tl-time">19:25</td>
+                <td>KM2962 イスタンブールへ出発✈️</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">22:55</td>
+                <td>イスタンブール空港 着陸</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card open" id="card-return-istanbul">
+          <div class="card-header" onclick="toggleCard('card-return-istanbul')">
+            <span class="card-icon">🛬</span>
+            <span class="card-title">復路② イスタンブール〜羽田（6/2深夜〜6/4）</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-return-istanbul"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-return-istanbul', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
+            <table class="timeline-table">
+              <thead><tr><th>時間</th><th>やること</th><th></th></tr></thead>
+              <tbody>
+              <tr class="tl-phase"><td colspan="3">🌙 6/2 深夜（イスタンブール到着）</td></tr>
+              <tr>
+                <td class="tl-time">22:55〜翌00:00</td>
+                <td>入国審査＋荷物受取<span class="tl-warn">⚠️ 荷物受取の有無はマルタ出発時カウンターで要確認</span></td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">00:00〜00:30</td>
+                <td>ホテルへ移動（タクシー）<span class="tl-sub">約15分・$6〜8</span></td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">00:30</td>
+                <td>AirGate Airport Hotel チェックイン（仮）・就寝</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr class="tl-phase"><td colspan="3">☀️ 6/3（観光〜出発）</td></tr>
+              <tr>
+                <td class="tl-time">〜14:00</td>
+                <td>旧市街など観光（任意・5〜6時間）</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">15:00</td>
+                <td>ホテル出発（タクシー）<span class="tl-sub">※前夜フロントに伝えておく</span></td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">15:15</td>
+                <td>空港到着</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">15:15〜16:30</td>
+                <td>チェックイン・保安検査・出国審査</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr class="tl-depart">
+                <td class="tl-time">17:45</td>
+                <td>NH220 羽田へ出発✈️</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr class="tl-phase"><td colspan="3">✈️ 6/4（帰国）</td></tr>
+              <tr>
+                <td class="tl-time">11:10</td>
+                <td>羽田到着🇯🇵</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <div class="card" id="card-return-mile">
           <div class="card-header" onclick="toggleCard('card-return-mile')">
