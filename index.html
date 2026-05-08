@@ -625,6 +625,7 @@
       <button class="tab-btn" onclick="showTab('italy')">イタリア</button>
       <button class="tab-btn" onclick="showTab('stay')">マルタ延泊</button>
       <button class="tab-btn" onclick="showTab('return')">復路</button>
+  <button class="tab-btn" onclick="showTab('souvenir')">お土産</button>
     </div>
   </div>
 
@@ -2934,6 +2935,232 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-souvenir">
+      <div class="phase-hero">
+        <div class="phase-icon">🛍️</div>
+        <div class="phase-title">お土産</div>
+        <div class="phase-date">マルタ滞在中〜帰国まで</div>
+        <div class="phase-desc">マルタならではのお土産をチェック。定番品から自分だけの一品まで。</div>
+      </div>
+      <div class="cards">
+
+        <div class="card open" id="card-souvenir-food">
+          <div class="card-header" onclick="toggleCard('card-souvenir-food')">
+            <span class="card-icon">🍯</span>
+            <span class="card-title">食べ物・飲み物</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-souvenir-food"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-souvenir-food', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
+            <div class="checklist-phase">🍯 食べ物・調味料</div>
+            <div class="info-item">
+              <span class="info-label">はちみつ</span>
+              <span class="info-value">マルタ国名「Melita」は古代語でハチミツの意。Gozo産が高品質。€6.50〜（250g）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">ゴゾ島の塩</span>
+              <span class="info-value">350年続く伝統製法の天然海塩。料理好きへのギフトに最適。€3.50〜</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">オリーブオイル</span>
+              <span class="info-value">レモン・ガーリック風味など多様。250mlで€10〜</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">クンセルバ</span>
+              <span class="info-value">マルタ家庭料理に欠かせない濃縮トマトペースト。€0.60〜（200g）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">サボテンジャム</span>
+              <span class="info-value">ウチワサボテンの実で作るジャム。地中海らしい味。€3.50〜（200g）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">スパイス</span>
+              <span class="info-value">マルタ料理のハーブブレンドや兔料理用スパイスなど。€1.50〜</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">ヌガー</span>
+              <span class="info-value">お祭り定番のナッツ入りキャンディ。個包装で配りやすい。€1.50〜</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Twistees（ツイスティーズ）</span>
+              <span class="info-value">マルタ国民的チーズスナック。複数フレーバーあり。€0.80（50g）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Maltesers（モルティーザーズ）</span>
+              <span class="info-value">サクサクのキャラメル入りチョコ。<span class="badge badge-green">日本では未販売</span>で喜ばれる。€1.20〜</span>
+            </div>
+            <div class="checklist-phase">🍺 飲み物</div>
+            <div class="info-item">
+              <span class="info-label">Kinnie（キニー）</span>
+              <span class="info-value">マルタのコーラ的存在。オレンジ＆ハーブ風味の炭酸飲料。€1.50/L</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">CISK Beer（シスク）</span>
+              <span class="info-value">受賞歴あるマルタの地ビール。<span class="badge badge-blue">海外輸出ほぼなし</span>の現地限定品。€1.20（330ml）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Bajtra（バイトラ）</span>
+              <span class="info-value">ウチワサボテンの実のリキュール。ピンク色が可愛くお土産向き。€15（700ml）</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">マルタワイン</span>
+              <span class="info-value">地元産ブドウを使った希少ワイン。Marsovin等。€8〜（750ml）</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card open" id="card-souvenir-craft">
+          <div class="card-header" onclick="toggleCard('card-souvenir-craft')">
+            <span class="card-icon">🪡</span>
+            <span class="card-title">工芸品・雑貨</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-souvenir-craft"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-souvenir-craft', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
+            <div class="info-item">
+              <span class="info-label">フィリグリー細工</span>
+              <span class="info-value">マルタ伝統の細工銀アクセサリー。繊細な銀線細工。正規店での購入推奨。€10〜</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">マルタレース</span>
+              <span class="info-value">手作りボビンレース。コースター€5〜、テーブルクロスまで幅広い。</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Mdina Glass</span>
+              <span class="info-value">ムディーナ工房の手吹きガラス工芸品。独自の色彩が美しい。€25〜</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">マルタストーン工芸</span>
+              <span class="info-value">島の建築と同じ蜂蜜色の石灰岩を使った置き物・雑貨。€8〜</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">マルタタイル</span>
+              <span class="info-value">歴史的建物の幾何学模様を再現したタイルコースター。€10〜/枚</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">マルタソープ</span>
+              <span class="info-value">ローカルハーブ・自然素材の手作り石鹸。€4〜/個</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card open" id="card-souvenir-shops">
+          <div class="card-header" onclick="toggleCard('card-souvenir-shops')">
+            <span class="card-icon">🏪</span>
+            <span class="card-title">買える場所</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-souvenir-shops"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-souvenir-shops', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
+            <div class="info-item">
+              <span class="info-label">ヴァレッタ旧市街</span>
+              <span class="info-value">Republic St. / Merchants St. に土産物店が集中。品揃え最多。</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">マルサシュロック市場</span>
+              <span class="info-value">日曜開催の屋外市場。地元の食品・手工芸品が安く買える。</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">ムディーナ（Mdina）</span>
+              <span class="info-value">城壁都市内の工芸品店。Mdina Glassの工房も近い。</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">スリーマ（The Point）</span>
+              <span class="info-value">現代的なショッピングモール。地元スーパーでの食品系お土産にも◎</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">マルタ国際空港</span>
+              <span class="info-value">帰国直前の最終購入チャンス。品揃え限定だが便利。</span>
+            </div>
+            <div class="note">
+              <div class="note-label">💡 ヒント</div>
+              スーパー（Lidl・SpaR）は食品系お土産の宝庫。ヴァレッタ旧市街より安く買えることも多い。
+            </div>
+          </div>
+        </div>
+
+        <div class="card open" id="card-souvenir-mylist">
+          <div class="card-header" onclick="toggleCard('card-souvenir-mylist')">
+            <span class="card-icon">📝</span>
+            <span class="card-title">マイお土産リスト</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-souvenir-mylist"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-souvenir-mylist', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
+            <div class="note">
+              <div class="note-label">✏️ 使い方</div>
+              欲しいものをメモ欄に書き込もう。買えたらチェック！
+            </div>
+            <div class="checklist">
+              <div class="check-item" id="chk-souvenir-1" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">お土産①</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-souvenir-2" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">お土産②</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-souvenir-3" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">お土産③</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-souvenir-4" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">お土産④</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+              <div class="check-item" id="chk-souvenir-5" onclick="toggleCheck(this)">
+                <div class="check-box">✓</div>
+                <div>
+                  <div class="check-label">お土産⑤</div>
+                  <div class="check-sub"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
