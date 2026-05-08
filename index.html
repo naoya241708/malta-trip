@@ -3085,7 +3085,7 @@
       </div>
       <div class="cards">
 
-        <div class="card open" id="card-souvenir-food">
+                <div class="card open" id="card-souvenir-food">
           <div class="card-header" onclick="toggleCard('card-souvenir-food')">
             <span class="card-icon">🍯</span>
             <span class="card-title">食べ物・飲み物</span>
@@ -3101,63 +3101,245 @@
                           oninput="autoResizeMemo(this)"></textarea>
               </div>
             <div class="checklist-phase">🍯 食べ物・調味料</div>
-            <div class="info-item">
-              <span class="info-label">はちみつ</span>
-              <span class="info-value">マルタ国名「Melita」は古代語でハチミツの意。Gozo産が高品質。€6.50〜（250g）</span>
+            <div class="pocb-item" id="sv-honey">
+              <div class="pocb-title">はちみつ</div>
+              <div class="pocb-desc">マルタ国名「Melita」は古代語でハチミツの意。Gozo産が高品質。€6.50〜（250g）</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-honey','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-honey','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-honey','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-honey','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-honey-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-honey')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-honey',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-honey-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-honey',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-honey')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">ゴゾ島の塩</span>
-              <span class="info-value">350年続く伝統製法の天然海塩。料理好きへのギフトに最適。€3.50〜</span>
+            <div class="pocb-item" id="sv-gozo-salt">
+              <div class="pocb-title">ゴゾ島の塩</div>
+              <div class="pocb-desc">350年続く伝統製法の天然海塩。料理好きへのギフトに最適。€3.50〜</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-gozo-salt','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-gozo-salt','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-gozo-salt','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-gozo-salt','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-gozo-salt-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-gozo-salt')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-gozo-salt',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-gozo-salt-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-gozo-salt',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-gozo-salt')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">オリーブオイル</span>
-              <span class="info-value">レモン・ガーリック風味など多様。250mlで€10〜</span>
+            <div class="pocb-item" id="sv-olive">
+              <div class="pocb-title">オリーブオイル</div>
+              <div class="pocb-desc">レモン・ガーリック風味など多様。250mlで€10〜</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-olive','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-olive','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-olive','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-olive','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-olive-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-olive')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-olive',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-olive-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-olive',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-olive')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">クンセルバ</span>
-              <span class="info-value">マルタ家庭料理に欠かせない濃縮トマトペースト。€0.60〜（200g）</span>
+            <div class="pocb-item" id="sv-kunserva">
+              <div class="pocb-title">クンセルバ</div>
+              <div class="pocb-desc">マルタ家庭料理に欠かせない濃縮トマトペースト。€0.60〜（200g）</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-kunserva','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-kunserva','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-kunserva','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-kunserva','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-kunserva-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-kunserva')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-kunserva',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-kunserva-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-kunserva',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-kunserva')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">サボテンジャム</span>
-              <span class="info-value">ウチワサボテンの実で作るジャム。地中海らしい味。€3.50〜（200g）</span>
+            <div class="pocb-item" id="sv-cactus-jam">
+              <div class="pocb-title">サボテンジャム</div>
+              <div class="pocb-desc">ウチワサボテンの実で作るジャム。地中海らしい味。€3.50〜（200g）</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-cactus-jam','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-cactus-jam','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-cactus-jam','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-cactus-jam','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-cactus-jam-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-cactus-jam')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-cactus-jam',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-cactus-jam-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-cactus-jam',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-cactus-jam')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">スパイス</span>
-              <span class="info-value">マルタ料理のハーブブレンドや兔料理用スパイスなど。€1.50〜</span>
+            <div class="pocb-item" id="sv-spice">
+              <div class="pocb-title">スパイス</div>
+              <div class="pocb-desc">マルタ料理のハーブブレンドや兔料理用スパイスなど。€1.50〜</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-spice','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-spice','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-spice','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-spice','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-spice-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-spice')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-spice',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-spice-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-spice',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-spice')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">ヌガー</span>
-              <span class="info-value">お祭り定番のナッツ入りキャンディ。個包装で配りやすい。€1.50〜</span>
+            <div class="pocb-item" id="sv-nougat">
+              <div class="pocb-title">ヌガー</div>
+              <div class="pocb-desc">お祭り定番のナッツ入りキャンディ。個包装で配りやすい。€1.50〜</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-nougat','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-nougat','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-nougat','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-nougat','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-nougat-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-nougat')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-nougat',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-nougat-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-nougat',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-nougat')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">Twistees（ツイスティーズ）</span>
-              <span class="info-value">マルタ国民的チーズスナック。複数フレーバーあり。€0.80（50g）</span>
+            <div class="pocb-item" id="sv-twistees">
+              <div class="pocb-title">Twistees（ツイスティーズ）</div>
+              <div class="pocb-desc">マルタ国民的チーズスナック。複数フレーバーあり。€0.80（50g）</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-twistees','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-twistees','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-twistees','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-twistees','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-twistees-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-twistees')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-twistees',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-twistees-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-twistees',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-twistees')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">Maltesers（モルティーザーズ）</span>
-              <span class="info-value">サクサクのキャラメル入りチョコ。<span class="badge badge-green">日本では未販売</span>で喜ばれる。€1.20〜</span>
+            <div class="pocb-item" id="sv-maltesers">
+              <div class="pocb-title">Maltesers（モルティーザーズ）</div>
+              <div class="pocb-desc">サクサクのキャラメル入りチョコ。<span class="badge badge-green">日本では未販売</span>で喜ばれる。€1.20〜</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-maltesers','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-maltesers','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-maltesers','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-maltesers','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-maltesers-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-maltesers')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-maltesers',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-maltesers-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-maltesers',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-maltesers')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
             <div class="checklist-phase">🍺 飲み物</div>
-            <div class="info-item">
-              <span class="info-label">Kinnie（キニー）</span>
-              <span class="info-value">マルタのコーラ的存在。オレンジ＆ハーブ風味の炭酸飲料。€1.50/L</span>
+            <div class="pocb-item" id="sv-kinnie">
+              <div class="pocb-title">Kinnie（キニー）</div>
+              <div class="pocb-desc">マルタのコーラ的存在。オレンジ＆ハーブ風味の炭酸飲料。€1.50/L</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-kinnie','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-kinnie','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-kinnie','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-kinnie','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-kinnie-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-kinnie')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-kinnie',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-kinnie-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-kinnie',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-kinnie')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">CISK Beer（シスク）</span>
-              <span class="info-value">受賞歴あるマルタの地ビール。<span class="badge badge-blue">海外輸出ほぼなし</span>の現地限定品。€1.20（330ml）</span>
+            <div class="pocb-item" id="sv-cisk">
+              <div class="pocb-title">CISK Beer（シスク）</div>
+              <div class="pocb-desc">受賞歴あるマルタの地ビール。<span class="badge badge-blue">海外輸出ほぼなし</span>の現地限定品。€1.20（330ml）</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-cisk','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-cisk','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-cisk','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-cisk','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-cisk-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-cisk')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-cisk',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-cisk-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-cisk',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-cisk')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">Bajtra（バイトラ）</span>
-              <span class="info-value">ウチワサボテンの実のリキュール。ピンク色が可愛くお土産向き。€15（700ml）</span>
+            <div class="pocb-item" id="sv-bajtra">
+              <div class="pocb-title">Bajtra（バイトラ）</div>
+              <div class="pocb-desc">ウチワサボテンの実のリキュール。ピンク色が可愛くお土産向き。€15（700ml）</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-bajtra','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-bajtra','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-bajtra','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-bajtra','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-bajtra-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-bajtra')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-bajtra',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-bajtra-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-bajtra',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-bajtra')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">マルタワイン</span>
-              <span class="info-value">地元産ブドウを使った希少ワイン。Marsovin等。€8〜（750ml）</span>
+            <div class="pocb-item" id="sv-wine">
+              <div class="pocb-title">マルタワイン</div>
+              <div class="pocb-desc">地元産ブドウを使った希少ワイン。Marsovin等。€8〜（750ml）</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-wine','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-wine','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-wine','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-wine','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-wine-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-wine')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-wine',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-wine-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-wine',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-wine')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="card open" id="card-souvenir-craft">
+                <div class="card open" id="card-souvenir-craft">
           <div class="card-header" onclick="toggleCard('card-souvenir-craft')">
             <span class="card-icon">🪡</span>
             <span class="card-title">工芸品・雑貨</span>
@@ -3172,29 +3354,113 @@
                           onblur="saveMemo('card-souvenir-craft', this.value)"
                           oninput="autoResizeMemo(this)"></textarea>
               </div>
-            <div class="info-item">
-              <span class="info-label">フィリグリー細工</span>
-              <span class="info-value">マルタ伝統の細工銀アクセサリー。繊細な銀線細工。正規店での購入推奨。€10〜</span>
+            <div class="pocb-item" id="sv-filigree">
+              <div class="pocb-title">フィリグリー細工</div>
+              <div class="pocb-desc">マルタ伝統の細工銀アクセサリー。繊細な銀線細工。正規店での購入推奨。€10〜</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-filigree','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-filigree','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-filigree','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-filigree','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-filigree-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-filigree')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-filigree',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-filigree-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-filigree',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-filigree')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">マルタレース</span>
-              <span class="info-value">手作りボビンレース。コースター€5〜、テーブルクロスまで幅広い。</span>
+            <div class="pocb-item" id="sv-lace">
+              <div class="pocb-title">マルタレース</div>
+              <div class="pocb-desc">手作りボビンレース。コースター€5〜、テーブルクロスまで幅広い。</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-lace','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-lace','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-lace','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-lace','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-lace-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-lace')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-lace',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-lace-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-lace',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-lace')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">Mdina Glass</span>
-              <span class="info-value">ムディーナ工房の手吹きガラス工芸品。独自の色彩が美しい。€25〜</span>
+            <div class="pocb-item" id="sv-mdina-glass">
+              <div class="pocb-title">Mdina Glass</div>
+              <div class="pocb-desc">ムディーナ工房の手吹きガラス工芸品。独自の色彩が美しい。€25〜</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-mdina-glass','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-mdina-glass','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-mdina-glass','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-mdina-glass','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-mdina-glass-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-mdina-glass')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-mdina-glass',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-mdina-glass-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-mdina-glass',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-mdina-glass')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">マルタストーン工芸</span>
-              <span class="info-value">島の建築と同じ蜂蜜色の石灰岩を使った置き物・雑貨。€8〜</span>
+            <div class="pocb-item" id="sv-stone">
+              <div class="pocb-title">マルタストーン工芸</div>
+              <div class="pocb-desc">島の建築と同じ蜂蜜色の石灰岩を使った置き物・雑貨。€8〜</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-stone','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-stone','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-stone','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-stone','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-stone-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-stone')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-stone',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-stone-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-stone',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-stone')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">マルタタイル</span>
-              <span class="info-value">歴史的建物の幾何学模様を再現したタイルコースター。€10〜/枚</span>
+            <div class="pocb-item" id="sv-tiles">
+              <div class="pocb-title">マルタタイル</div>
+              <div class="pocb-desc">歴史的建物の幾何学模様を再現したタイルコースター。€10〜/枚</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-tiles','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-tiles','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-tiles','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-tiles','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-tiles-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-tiles')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-tiles',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-tiles-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-tiles',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-tiles')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
-            <div class="info-item">
-              <span class="info-label">マルタソープ</span>
-              <span class="info-value">ローカルハーブ・自然素材の手作り石鹸。€4〜/個</span>
+            <div class="pocb-item" id="sv-soap">
+              <div class="pocb-title">マルタソープ</div>
+              <div class="pocb-desc">ローカルハーブ・自然素材の手作り石鹸。€4〜/個</div>
+              <div class="pocb-controls">
+                <div class="pocb-chips-row"><button class="pocb-chip" data-for="自分" onclick="toggleSvChip('sv-soap','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="toggleSvChip('sv-soap','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="toggleSvChip('sv-soap','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="toggleSvChip('sv-soap','職場')">職場</button></div>
+                <div class="pocb-actions-row">
+                  <input class="pocb-for-input" id="sv-soap-for"
+                         type="text" placeholder="誰に？（例：田中さん、高校の友達）"
+                         onblur="saveSv('sv-soap')">
+                  <div class="pocb-qty">
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-soap',-1)">−</button>
+                    <span class="pocb-qty-num" id="sv-soap-qty">0</span>
+                    <button class="pocb-qty-btn" onclick="adjustSvQty('sv-soap',1)">＋</button>
+                  </div>
+                  <button class="pocb-buy-btn" onclick="toggleSvBought('sv-soap')">購入済み ✓</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -3691,6 +3957,7 @@ window.addEventListener('load', () => {
   loadMemos();
   loadPocA();
   loadPocB();
+  loadSv();
   adjustLayout();
 });
 window.addEventListener('resize', adjustLayout);
@@ -3844,6 +4111,71 @@ function adjustPocBQty(itemId, delta) {
   if (next > 0) { qtyEl.classList.add('has-qty'); }
   else          { qtyEl.classList.remove('has-qty'); }
   savePocBItem(itemId);
+}
+
+// ━━━ お土産タブ 購入管理 ━━━
+var SV_KEY = 'malta-souvenir';
+
+function saveSv(itemId) {
+  var item = document.getElementById(itemId);
+  if (!item) return;
+  var data = JSON.parse(localStorage.getItem(SV_KEY) || '{}');
+  var selected = Array.from(item.querySelectorAll('.pocb-chip.selected')).map(function(c){ return c.dataset.for; });
+  var qtyEl   = document.getElementById(itemId + '-qty');
+  var forEl   = document.getElementById(itemId + '-for');
+  data[itemId] = {
+    bought:  item.classList.contains('pocb-bought'),
+    forWho:  selected,
+    qty:     qtyEl ? parseInt(qtyEl.textContent,10)||0 : 0,
+    forText: forEl ? forEl.value : ''
+  };
+  localStorage.setItem(SV_KEY, JSON.stringify(data));
+}
+
+function toggleSvChip(itemId, recipient) {
+  var item = document.getElementById(itemId);
+  if (!item) return;
+  var chip = item.querySelector('.pocb-chip[data-for="' + recipient + '"]');
+  if (chip) chip.classList.toggle('selected');
+  saveSv(itemId);
+}
+
+function toggleSvBought(itemId) {
+  var item = document.getElementById(itemId);
+  if (!item) return;
+  item.classList.toggle('pocb-bought');
+  saveSv(itemId);
+}
+
+function adjustSvQty(itemId, delta) {
+  var qtyEl = document.getElementById(itemId + '-qty');
+  if (!qtyEl) return;
+  var next = Math.max(0, (parseInt(qtyEl.textContent,10)||0) + delta);
+  qtyEl.textContent = next;
+  next > 0 ? qtyEl.classList.add('has-qty') : qtyEl.classList.remove('has-qty');
+  saveSv(itemId);
+}
+
+function loadSv() {
+  var data = JSON.parse(localStorage.getItem(SV_KEY) || '{}');
+  Object.keys(data).forEach(function(itemId) {
+    var item = document.getElementById(itemId);
+    if (!item) return;
+    var d = data[itemId];
+    if (d.bought) item.classList.add('pocb-bought');
+    (d.forWho || []).forEach(function(r) {
+      var chip = item.querySelector('.pocb-chip[data-for="' + r + '"]');
+      if (chip) chip.classList.add('selected');
+    });
+    if (d.qty) {
+      var qtyEl = document.getElementById(itemId + '-qty');
+      if (qtyEl) { qtyEl.textContent = d.qty; if(d.qty>0) qtyEl.classList.add('has-qty'); }
+    }
+    if (d.forText) {
+      var forEl = document.getElementById(itemId + '-for');
+      if (forEl) forEl.value = d.forText;
+    }
+  });
 }
 </script>
 </body>
