@@ -592,6 +592,97 @@
   margin-bottom: 2px;
   letter-spacing: 0.01em;
 }
+
+/* ━━━ PoC-A: 購入管理テーブル ━━━ */
+.poca-summary {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sea);
+  padding: 6px 0 10px;
+}
+.poca-header {
+  display: flex;
+  gap: 6px;
+  padding: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--stone);
+  margin-bottom: 2px;
+}
+.poca-header-chk  { width: 28px; flex-shrink: 0; text-align: center; }
+.poca-header-name { flex: 2; }
+.poca-header-for  { flex: 1; }
+.poca-header-price{ width: 58px; flex-shrink: 0; text-align: right; }
+.poca-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: opacity 0.2s;
+}
+.poca-row.poca-bought .poca-name,
+.poca-row.poca-bought .poca-for,
+.poca-row.poca-bought .poca-price { opacity: 0.4; text-decoration: line-through; }
+.poca-chk {
+  width: 28px; height: 28px; flex-shrink: 0;
+  border: 2px solid var(--stone); border-radius: 6px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: transparent; transition: all 0.15s; user-select: none;
+}
+.poca-chk.checked { background: var(--sea); border-color: var(--sea); color: #fff; }
+.poca-name, .poca-for {
+  padding: 5px 8px; border: 1px solid var(--stone); border-radius: 6px;
+  font-size: 13px; font-family: inherit; background: rgba(255,255,255,0.7); min-width: 0;
+}
+.poca-name { flex: 2; }
+.poca-for  { flex: 1; }
+.poca-price {
+  width: 58px; flex-shrink: 0; padding: 5px 6px;
+  border: 1px solid var(--stone); border-radius: 6px;
+  font-size: 12px; font-family: inherit; background: rgba(255,255,255,0.7);
+  text-align: right;
+}
+.poca-name:focus, .poca-for:focus, .poca-price:focus {
+  outline: none; border-color: var(--sea-light); background: #fff;
+}
+
+/* ━━━ PoC-B: インタラクティブ情報カード ━━━ */
+.pocb-item {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: opacity 0.2s;
+}
+.pocb-item:last-child { border-bottom: none; }
+.pocb-item.pocb-bought { opacity: 0.45; }
+.pocb-item.pocb-bought .pocb-title { text-decoration: line-through; }
+.pocb-title {
+  font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px;
+}
+.pocb-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; line-height: 1.5; }
+.pocb-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+.pocb-chip {
+  padding: 3px 11px; border: 1px solid var(--stone); border-radius: 12px;
+  font-size: 11px; font-family: inherit; cursor: pointer;
+  background: transparent; color: var(--text-muted); transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.pocb-chip.selected {
+  background: rgba(var(--sea-rgb, 30,120,150), 0.12);
+  border-color: var(--sea); color: var(--sea-dark); font-weight: 700;
+}
+.pocb-buy-btn {
+  margin-left: auto; padding: 4px 13px;
+  border: 1px solid var(--stone); border-radius: 12px;
+  font-size: 11px; font-family: inherit; cursor: pointer;
+  background: transparent; color: var(--text-muted); transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.pocb-item.pocb-bought .pocb-buy-btn {
+  background: var(--sea); border-color: var(--sea); color: #fff; font-weight: 700;
+}
 </style>
 </head>
 <body>
@@ -626,6 +717,8 @@
       <button class="tab-btn" onclick="showTab('stay')">マルタ延泊</button>
       <button class="tab-btn" onclick="showTab('return')">復路</button>
   <button class="tab-btn" onclick="showTab('souvenir')">お土産</button>
+  <button class="tab-btn" onclick="showTab('poc-a')">🗒 試作A</button>
+  <button class="tab-btn" onclick="showTab('poc-b')">🏷 試作B</button>
     </div>
   </div>
 
@@ -3163,6 +3256,187 @@
 
       </div>
     </div>
+    <div class="tab-panel" id="tab-poc-a">
+      <div class="phase-hero">
+        <div class="phase-icon">🗒️</div>
+        <div class="phase-title">試作A：購入管理テーブル</div>
+        <div class="phase-date">品名・誰向け・金額を自由入力</div>
+        <div class="phase-desc">チェック＋テキスト入力で管理するシンプルな一覧形式。入力した内容はこのデバイスに保存されます。</div>
+      </div>
+      <div class="cards">
+        <div class="card open" id="card-poc-a">
+          <div class="card-header" onclick="toggleCard('card-poc-a')">
+            <span class="card-icon">🛒</span>
+            <span class="card-title">お土産購入リスト</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="poca-summary" id="poca-label">0 / 12 購入済み</div>
+            <div class="poca-header">
+              <div class="poca-header-chk">✓</div>
+              <div class="poca-header-name">品名</div>
+              <div class="poca-header-for">誰に</div>
+              <div class="poca-header-price">金額</div>
+            </div>
+              <div class="poca-row" id="poca-row-1">
+                <div class="poca-chk" id="poca-chk-1" onclick="togglePocA(1)">✓</div>
+                <input class="poca-name" id="poca-name-1" type="text" placeholder="何を買う？" onblur="savePocARow(1)">
+                <input class="poca-for"  id="poca-for-1" type="text" placeholder="誰に？"    onblur="savePocARow(1)">
+                <input class="poca-price"id="poca-price-1" type="text" placeholder="€"        onblur="savePocARow(1)">
+              </div>
+              <div class="poca-row" id="poca-row-2">
+                <div class="poca-chk" id="poca-chk-2" onclick="togglePocA(2)">✓</div>
+                <input class="poca-name" id="poca-name-2" type="text" placeholder="何を買う？" onblur="savePocARow(2)">
+                <input class="poca-for"  id="poca-for-2" type="text" placeholder="誰に？"    onblur="savePocARow(2)">
+                <input class="poca-price"id="poca-price-2" type="text" placeholder="€"        onblur="savePocARow(2)">
+              </div>
+              <div class="poca-row" id="poca-row-3">
+                <div class="poca-chk" id="poca-chk-3" onclick="togglePocA(3)">✓</div>
+                <input class="poca-name" id="poca-name-3" type="text" placeholder="何を買う？" onblur="savePocARow(3)">
+                <input class="poca-for"  id="poca-for-3" type="text" placeholder="誰に？"    onblur="savePocARow(3)">
+                <input class="poca-price"id="poca-price-3" type="text" placeholder="€"        onblur="savePocARow(3)">
+              </div>
+              <div class="poca-row" id="poca-row-4">
+                <div class="poca-chk" id="poca-chk-4" onclick="togglePocA(4)">✓</div>
+                <input class="poca-name" id="poca-name-4" type="text" placeholder="何を買う？" onblur="savePocARow(4)">
+                <input class="poca-for"  id="poca-for-4" type="text" placeholder="誰に？"    onblur="savePocARow(4)">
+                <input class="poca-price"id="poca-price-4" type="text" placeholder="€"        onblur="savePocARow(4)">
+              </div>
+              <div class="poca-row" id="poca-row-5">
+                <div class="poca-chk" id="poca-chk-5" onclick="togglePocA(5)">✓</div>
+                <input class="poca-name" id="poca-name-5" type="text" placeholder="何を買う？" onblur="savePocARow(5)">
+                <input class="poca-for"  id="poca-for-5" type="text" placeholder="誰に？"    onblur="savePocARow(5)">
+                <input class="poca-price"id="poca-price-5" type="text" placeholder="€"        onblur="savePocARow(5)">
+              </div>
+              <div class="poca-row" id="poca-row-6">
+                <div class="poca-chk" id="poca-chk-6" onclick="togglePocA(6)">✓</div>
+                <input class="poca-name" id="poca-name-6" type="text" placeholder="何を買う？" onblur="savePocARow(6)">
+                <input class="poca-for"  id="poca-for-6" type="text" placeholder="誰に？"    onblur="savePocARow(6)">
+                <input class="poca-price"id="poca-price-6" type="text" placeholder="€"        onblur="savePocARow(6)">
+              </div>
+              <div class="poca-row" id="poca-row-7">
+                <div class="poca-chk" id="poca-chk-7" onclick="togglePocA(7)">✓</div>
+                <input class="poca-name" id="poca-name-7" type="text" placeholder="何を買う？" onblur="savePocARow(7)">
+                <input class="poca-for"  id="poca-for-7" type="text" placeholder="誰に？"    onblur="savePocARow(7)">
+                <input class="poca-price"id="poca-price-7" type="text" placeholder="€"        onblur="savePocARow(7)">
+              </div>
+              <div class="poca-row" id="poca-row-8">
+                <div class="poca-chk" id="poca-chk-8" onclick="togglePocA(8)">✓</div>
+                <input class="poca-name" id="poca-name-8" type="text" placeholder="何を買う？" onblur="savePocARow(8)">
+                <input class="poca-for"  id="poca-for-8" type="text" placeholder="誰に？"    onblur="savePocARow(8)">
+                <input class="poca-price"id="poca-price-8" type="text" placeholder="€"        onblur="savePocARow(8)">
+              </div>
+              <div class="poca-row" id="poca-row-9">
+                <div class="poca-chk" id="poca-chk-9" onclick="togglePocA(9)">✓</div>
+                <input class="poca-name" id="poca-name-9" type="text" placeholder="何を買う？" onblur="savePocARow(9)">
+                <input class="poca-for"  id="poca-for-9" type="text" placeholder="誰に？"    onblur="savePocARow(9)">
+                <input class="poca-price"id="poca-price-9" type="text" placeholder="€"        onblur="savePocARow(9)">
+              </div>
+              <div class="poca-row" id="poca-row-10">
+                <div class="poca-chk" id="poca-chk-10" onclick="togglePocA(10)">✓</div>
+                <input class="poca-name" id="poca-name-10" type="text" placeholder="何を買う？" onblur="savePocARow(10)">
+                <input class="poca-for"  id="poca-for-10" type="text" placeholder="誰に？"    onblur="savePocARow(10)">
+                <input class="poca-price"id="poca-price-10" type="text" placeholder="€"        onblur="savePocARow(10)">
+              </div>
+              <div class="poca-row" id="poca-row-11">
+                <div class="poca-chk" id="poca-chk-11" onclick="togglePocA(11)">✓</div>
+                <input class="poca-name" id="poca-name-11" type="text" placeholder="何を買う？" onblur="savePocARow(11)">
+                <input class="poca-for"  id="poca-for-11" type="text" placeholder="誰に？"    onblur="savePocARow(11)">
+                <input class="poca-price"id="poca-price-11" type="text" placeholder="€"        onblur="savePocARow(11)">
+              </div>
+              <div class="poca-row" id="poca-row-12">
+                <div class="poca-chk" id="poca-chk-12" onclick="togglePocA(12)">✓</div>
+                <input class="poca-name" id="poca-name-12" type="text" placeholder="何を買う？" onblur="savePocARow(12)">
+                <input class="poca-for"  id="poca-for-12" type="text" placeholder="誰に？"    onblur="savePocARow(12)">
+                <input class="poca-price"id="poca-price-12" type="text" placeholder="€"        onblur="savePocARow(12)">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-poc-b">
+      <div class="phase-hero">
+        <div class="phase-icon">🏷️</div>
+        <div class="phase-title">試作B：情報カード拡張型</div>
+        <div class="phase-date">誰向けタグ＋購入済みトグル</div>
+        <div class="phase-desc">お土産情報の横にタグで「誰向け」を選び、「購入済み」ボタンで管理するインタラクティブ形式。</div>
+      </div>
+      <div class="cards">
+        <div class="card open" id="card-poc-b">
+          <div class="card-header" onclick="toggleCard('card-poc-b')">
+            <span class="card-icon">🛍️</span>
+            <span class="card-title">サンプルお土産（8品）</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="pocb-item" id="pocb-honey">
+              <div class="pocb-title">はちみつ（Gozo産）</div>
+              <div class="pocb-desc">Gozo島の濃厚な野花はちみつ。高品質で日本へのお土産に最適。€6.50〜（250g）</div>
+              <div class="pocb-controls">
+                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-honey','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-honey','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-honey','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-honey','職場')">職場</button>
+                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-honey')">購入済み ✓</button>
+              </div>
+            </div>
+            <div class="pocb-item" id="pocb-kinnie">
+              <div class="pocb-title">Kinnie（キニー）</div>
+              <div class="pocb-desc">マルタのコーラ的存在。オレンジ＆ハーブ風味の炭酸飲料。€1.50/L</div>
+              <div class="pocb-controls">
+                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-kinnie','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-kinnie','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-kinnie','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-kinnie','職場')">職場</button>
+                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-kinnie')">購入済み ✓</button>
+              </div>
+            </div>
+            <div class="pocb-item" id="pocb-twistees">
+              <div class="pocb-title">Twistees（ツイスティーズ）</div>
+              <div class="pocb-desc">マルタ国民的チーズスナック。複数フレーバーあり。€0.80（50g）</div>
+              <div class="pocb-controls">
+                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-twistees','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-twistees','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-twistees','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-twistees','職場')">職場</button>
+                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-twistees')">購入済み ✓</button>
+              </div>
+            </div>
+            <div class="pocb-item" id="pocb-maltesers">
+              <div class="pocb-title">Maltesers（モルティーザーズ）</div>
+              <div class="pocb-desc">サクサクのキャラメル入りチョコ。日本では未販売のため喜ばれる。€1.20〜</div>
+              <div class="pocb-controls">
+                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-maltesers','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-maltesers','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-maltesers','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-maltesers','職場')">職場</button>
+                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-maltesers')">購入済み ✓</button>
+              </div>
+            </div>
+            <div class="pocb-item" id="pocb-nougat">
+              <div class="pocb-title">ヌガー</div>
+              <div class="pocb-desc">お祭り定番のナッツ入りキャンディ。個包装で配りやすい。€1.50〜</div>
+              <div class="pocb-controls">
+                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-nougat','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-nougat','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-nougat','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-nougat','職場')">職場</button>
+                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-nougat')">購入済み ✓</button>
+              </div>
+            </div>
+            <div class="pocb-item" id="pocb-filigree">
+              <div class="pocb-title">フィリグリー細工</div>
+              <div class="pocb-desc">マルタ伝統の細工銀アクセサリー。繊細な銀線細工。€10〜</div>
+              <div class="pocb-controls">
+                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-filigree','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-filigree','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-filigree','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-filigree','職場')">職場</button>
+                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-filigree')">購入済み ✓</button>
+              </div>
+            </div>
+            <div class="pocb-item" id="pocb-tiles">
+              <div class="pocb-title">マルタタイル</div>
+              <div class="pocb-desc">歴史的建物の幾何学模様を再現したタイルコースター。€10〜/枚</div>
+              <div class="pocb-controls">
+                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-tiles','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-tiles','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-tiles','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-tiles','職場')">職場</button>
+                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-tiles')">購入済み ✓</button>
+              </div>
+            </div>
+            <div class="pocb-item" id="pocb-soap">
+              <div class="pocb-title">マルタソープ</div>
+              <div class="pocb-desc">ローカルハーブ・自然素材の手作り石鹸。€4〜/個</div>
+              <div class="pocb-controls">
+                <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-soap','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-soap','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-soap','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-soap','職場')">職場</button>
+                <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-soap')">購入済み ✓</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div><!-- end content-area -->
 </div><!-- end app-wrapper -->
@@ -3289,6 +3563,8 @@ function adjustLayout() {
 window.addEventListener('load', () => {
   loadChecklist();
   loadMemos();
+  loadPocA();
+  loadPocB();
   adjustLayout();
 });
 window.addEventListener('resize', adjustLayout);
@@ -3331,6 +3607,94 @@ function loadMemos(gasData) {
       }
     });
   }
+}
+
+// ━━━ PoC-A ━━━
+function togglePocA(i) {
+  var chk = document.getElementById('poca-chk-' + i);
+  var row = document.getElementById('poca-row-' + i);
+  if (!chk) return;
+  chk.classList.toggle('checked');
+  row.classList.toggle('poca-bought');
+  savePocARow(i);
+  updatePocALabel();
+}
+function savePocARow(i) {
+  var data = JSON.parse(localStorage.getItem('malta-poc-a') || '{}');
+  var nameEl  = document.getElementById('poca-name-'  + i);
+  var forEl   = document.getElementById('poca-for-'   + i);
+  var priceEl = document.getElementById('poca-price-' + i);
+  var chkEl   = document.getElementById('poca-chk-'   + i);
+  if (!nameEl) return;
+  data[i] = {
+    name:    nameEl.value,
+    forWho:  forEl.value,
+    price:   priceEl.value,
+    checked: chkEl.classList.contains('checked')
+  };
+  localStorage.setItem('malta-poc-a', JSON.stringify(data));
+}
+function updatePocALabel() {
+  var total   = 12;
+  var checked = document.querySelectorAll('.poca-chk.checked').length;
+  var label   = document.getElementById('poca-label');
+  if (label) label.textContent = checked + ' / ' + total + ' 購入済み';
+}
+function loadPocA() {
+  var data = JSON.parse(localStorage.getItem('malta-poc-a') || '{}');
+  for (var i = 1; i <= 12; i++) {
+    var row = data[i];
+    if (!row) continue;
+    var nameEl  = document.getElementById('poca-name-'  + i);
+    var forEl   = document.getElementById('poca-for-'   + i);
+    var priceEl = document.getElementById('poca-price-' + i);
+    var chkEl   = document.getElementById('poca-chk-'   + i);
+    var rowEl   = document.getElementById('poca-row-'   + i);
+    if (nameEl)  nameEl.value  = row.name    || '';
+    if (forEl)   forEl.value   = row.forWho  || '';
+    if (priceEl) priceEl.value = row.price   || '';
+    if (row.checked && chkEl && rowEl) {
+      chkEl.classList.add('checked');
+      rowEl.classList.add('poca-bought');
+    }
+  }
+  updatePocALabel();
+}
+
+// ━━━ PoC-B ━━━
+function togglePocBChip(itemId, recipient) {
+  var item = document.getElementById(itemId);
+  if (!item) return;
+  var chip = item.querySelector('.pocb-chip[data-for="' + recipient + '"]');
+  if (chip) chip.classList.toggle('selected');
+  savePocBItem(itemId);
+}
+function togglePocBBought(itemId) {
+  var item = document.getElementById(itemId);
+  if (!item) return;
+  item.classList.toggle('pocb-bought');
+  savePocBItem(itemId);
+}
+function savePocBItem(itemId) {
+  var item = document.getElementById(itemId);
+  if (!item) return;
+  var data = JSON.parse(localStorage.getItem('malta-poc-b') || '{}');
+  var selected = Array.from(item.querySelectorAll('.pocb-chip.selected')).map(function(c){ return c.dataset.for; });
+  data[itemId] = { bought: item.classList.contains('pocb-bought'), forWho: selected };
+  localStorage.setItem('malta-poc-b', JSON.stringify(data));
+}
+function loadPocB() {
+  var data = JSON.parse(localStorage.getItem('malta-poc-b') || '{}');
+  Object.keys(data).forEach(function(itemId) {
+    var item = document.getElementById(itemId);
+    if (!item) return;
+    var d = data[itemId];
+    if (d.bought) item.classList.add('pocb-bought');
+    (d.forWho || []).forEach(function(r) {
+      var chip = item.querySelector('.pocb-chip[data-for="' + r + '"]');
+      if (chip) chip.classList.add('selected');
+    });
+  });
 }
 </script>
 </body>
