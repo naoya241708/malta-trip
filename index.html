@@ -790,6 +790,29 @@
   font-weight: 700;
   color: var(--sea);
 }
+
+/* ━━━ タイムラインテーブル 拡張 ━━━ */
+.tl-phase td {
+  background: rgba(0,0,0,0.04);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 5px 8px;
+  letter-spacing: 0.05em;
+  border-bottom: none;
+}
+.tl-warn {
+  display: block;
+  font-size: 11px;
+  color: #c07a2a;
+  margin-top: 3px;
+}
+.tl-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
 </style>
 </head>
 <body>
@@ -1397,7 +1420,7 @@
         <div class="card open" id="card-outbound-schedule">
           <div class="card-header" onclick="toggleCard('card-outbound-schedule')">
             <span class="card-icon">🕐</span>
-            <span class="card-title">当日の動き（NH219 / 08:25発）</span>
+            <span class="card-title">羽田空港でのタイムスケジュール</span>
             <span class="card-chevron">▼</span>
           </div>
           <div class="card-body">
@@ -1451,6 +1474,96 @@
               <tr class="tl-depart">
                 <td class="tl-time">08:25</td>
                 <td>出発✈️</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card open" id="card-istanbul-schedule">
+          <div class="card-header" onclick="toggleCard('card-istanbul-schedule')">
+            <span class="card-icon">🕌</span>
+            <span class="card-title">イスタンブール空港でのタイムスケジュール</span>
+            <span class="card-chevron">▼</span>
+          </div>
+          <div class="card-body">
+              <div class="card-memo">
+                <textarea class="card-memo-input"
+                          data-memo-key="memo-card-istanbul-schedule"
+                          placeholder="📝 メモ..."
+                          rows="1"
+                          onblur="saveMemo('card-istanbul-schedule', this.value)"
+                          oninput="autoResizeMemo(this)"></textarea>
+              </div>
+            <table class="timeline-table">
+              <thead>
+                <tr>
+                  <th>時間</th>
+                  <th>やること</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr class="tl-phase"><td colspan="3">🌙 5/9（着陸〜就寝）</td></tr>
+              <tr>
+                <td class="tl-time">15:35</td>
+                <td>イスタンブール空港 着陸</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">15:35〜16:30</td>
+                <td>入国審査＋荷物受取<span class="tl-warn">⚠️ 荷物受取の有無は羽田カウンターで要確認</span></td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">16:30〜17:00</td>
+                <td>ホテルへ移動（タクシー）<span class="tl-sub">約15分・$6〜8</span></td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">17:00</td>
+                <td>AirGate Airport Hotel チェックイン</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">17:00〜21:00</td>
+                <td>ホテル周辺を軽く散歩（任意）</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">21:00</td>
+                <td>就寝（翌早起きのため体力温存）</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr class="tl-phase"><td colspan="3">🌅 5/10（出発当日）</td></tr>
+              <tr>
+                <td class="tl-time">04:30</td>
+                <td>起床・準備</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">05:00</td>
+                <td>ホテル出発（タクシー）<span class="tl-sub">※前夜フロントに伝えておく</span></td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">05:15</td>
+                <td>空港到着</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">05:15〜06:30</td>
+                <td>チェックイン・保安検査・出国審査</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr class="tl-depart">
+                <td class="tl-time">07:30</td>
+                <td>KM2961 マルタへ出発✈️</td>
+                <td class="tl-dur">—</td>
+              </tr>
+              <tr>
+                <td class="tl-time">08:55</td>
+                <td>マルタ到着🇲🇹</td>
                 <td class="tl-dur">—</td>
               </tr>
               </tbody>
