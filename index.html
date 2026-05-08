@@ -683,6 +683,29 @@
 .pocb-item.pocb-bought .pocb-buy-btn {
   background: var(--sea); border-color: var(--sea); color: #fff; font-weight: 700;
 }
+
+/* ━━━ PoC-B 個数スロット ━━━ */
+.pocb-qty {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pocb-qty-btn {
+  width: 24px; height: 24px;
+  border: 1px solid var(--stone); border-radius: 50%;
+  cursor: pointer; background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; line-height: 1; color: var(--text-muted);
+  transition: all 0.15s; flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.pocb-qty-btn:active { background: var(--stone); }
+.pocb-qty-num {
+  min-width: 22px; text-align: center;
+  font-size: 14px; font-weight: 700; color: var(--text-muted);
+  transition: color 0.15s;
+}
+.pocb-qty-num.has-qty { color: var(--sea); }
 </style>
 </head>
 <body>
@@ -3374,6 +3397,11 @@
               <div class="pocb-desc">Gozo島の濃厚な野花はちみつ。高品質で日本へのお土産に最適。€6.50〜（250g）</div>
               <div class="pocb-controls">
                 <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-honey','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-honey','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-honey','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-honey','職場')">職場</button>
+                <div class="pocb-qty">
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-honey',-1)">−</button>
+                  <span class="pocb-qty-num" id="pocb-honey-qty">0</span>
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-honey',1)">＋</button>
+                </div>
                 <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-honey')">購入済み ✓</button>
               </div>
             </div>
@@ -3382,6 +3410,11 @@
               <div class="pocb-desc">マルタのコーラ的存在。オレンジ＆ハーブ風味の炭酸飲料。€1.50/L</div>
               <div class="pocb-controls">
                 <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-kinnie','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-kinnie','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-kinnie','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-kinnie','職場')">職場</button>
+                <div class="pocb-qty">
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-kinnie',-1)">−</button>
+                  <span class="pocb-qty-num" id="pocb-kinnie-qty">0</span>
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-kinnie',1)">＋</button>
+                </div>
                 <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-kinnie')">購入済み ✓</button>
               </div>
             </div>
@@ -3390,6 +3423,11 @@
               <div class="pocb-desc">マルタ国民的チーズスナック。複数フレーバーあり。€0.80（50g）</div>
               <div class="pocb-controls">
                 <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-twistees','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-twistees','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-twistees','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-twistees','職場')">職場</button>
+                <div class="pocb-qty">
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-twistees',-1)">−</button>
+                  <span class="pocb-qty-num" id="pocb-twistees-qty">0</span>
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-twistees',1)">＋</button>
+                </div>
                 <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-twistees')">購入済み ✓</button>
               </div>
             </div>
@@ -3398,6 +3436,11 @@
               <div class="pocb-desc">サクサクのキャラメル入りチョコ。日本では未販売のため喜ばれる。€1.20〜</div>
               <div class="pocb-controls">
                 <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-maltesers','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-maltesers','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-maltesers','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-maltesers','職場')">職場</button>
+                <div class="pocb-qty">
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-maltesers',-1)">−</button>
+                  <span class="pocb-qty-num" id="pocb-maltesers-qty">0</span>
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-maltesers',1)">＋</button>
+                </div>
                 <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-maltesers')">購入済み ✓</button>
               </div>
             </div>
@@ -3406,6 +3449,11 @@
               <div class="pocb-desc">お祭り定番のナッツ入りキャンディ。個包装で配りやすい。€1.50〜</div>
               <div class="pocb-controls">
                 <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-nougat','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-nougat','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-nougat','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-nougat','職場')">職場</button>
+                <div class="pocb-qty">
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-nougat',-1)">−</button>
+                  <span class="pocb-qty-num" id="pocb-nougat-qty">0</span>
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-nougat',1)">＋</button>
+                </div>
                 <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-nougat')">購入済み ✓</button>
               </div>
             </div>
@@ -3414,6 +3462,11 @@
               <div class="pocb-desc">マルタ伝統の細工銀アクセサリー。繊細な銀線細工。€10〜</div>
               <div class="pocb-controls">
                 <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-filigree','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-filigree','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-filigree','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-filigree','職場')">職場</button>
+                <div class="pocb-qty">
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-filigree',-1)">−</button>
+                  <span class="pocb-qty-num" id="pocb-filigree-qty">0</span>
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-filigree',1)">＋</button>
+                </div>
                 <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-filigree')">購入済み ✓</button>
               </div>
             </div>
@@ -3422,6 +3475,11 @@
               <div class="pocb-desc">歴史的建物の幾何学模様を再現したタイルコースター。€10〜/枚</div>
               <div class="pocb-controls">
                 <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-tiles','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-tiles','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-tiles','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-tiles','職場')">職場</button>
+                <div class="pocb-qty">
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-tiles',-1)">−</button>
+                  <span class="pocb-qty-num" id="pocb-tiles-qty">0</span>
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-tiles',1)">＋</button>
+                </div>
                 <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-tiles')">購入済み ✓</button>
               </div>
             </div>
@@ -3430,6 +3488,11 @@
               <div class="pocb-desc">ローカルハーブ・自然素材の手作り石鹸。€4〜/個</div>
               <div class="pocb-controls">
                 <button class="pocb-chip" data-for="自分" onclick="togglePocBChip('pocb-soap','自分')">自分</button><button class="pocb-chip" data-for="家族" onclick="togglePocBChip('pocb-soap','家族')">家族</button><button class="pocb-chip" data-for="友人" onclick="togglePocBChip('pocb-soap','友人')">友人</button><button class="pocb-chip" data-for="職場" onclick="togglePocBChip('pocb-soap','職場')">職場</button>
+                <div class="pocb-qty">
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-soap',-1)">−</button>
+                  <span class="pocb-qty-num" id="pocb-soap-qty">0</span>
+                  <button class="pocb-qty-btn" onclick="adjustPocBQty('pocb-soap',1)">＋</button>
+                </div>
                 <button class="pocb-buy-btn" onclick="togglePocBBought('pocb-soap')">購入済み ✓</button>
               </div>
             </div>
@@ -3680,7 +3743,9 @@ function savePocBItem(itemId) {
   if (!item) return;
   var data = JSON.parse(localStorage.getItem('malta-poc-b') || '{}');
   var selected = Array.from(item.querySelectorAll('.pocb-chip.selected')).map(function(c){ return c.dataset.for; });
-  data[itemId] = { bought: item.classList.contains('pocb-bought'), forWho: selected };
+  var qtyEl = document.getElementById(itemId + '-qty');
+  var qty = qtyEl ? parseInt(qtyEl.textContent, 10) || 0 : 0;
+  data[itemId] = { bought: item.classList.contains('pocb-bought'), forWho: selected, qty: qty };
   localStorage.setItem('malta-poc-b', JSON.stringify(data));
 }
 function loadPocB() {
@@ -3694,7 +3759,22 @@ function loadPocB() {
       var chip = item.querySelector('.pocb-chip[data-for="' + r + '"]');
       if (chip) chip.classList.add('selected');
     });
+    if (d.qty) {
+      var qtyEl = document.getElementById(itemId + '-qty');
+      if (qtyEl) { qtyEl.textContent = d.qty; if (d.qty > 0) qtyEl.classList.add('has-qty'); }
+    }
   });
+}
+
+function adjustPocBQty(itemId, delta) {
+  var qtyEl = document.getElementById(itemId + '-qty');
+  if (!qtyEl) return;
+  var current = parseInt(qtyEl.textContent, 10) || 0;
+  var next = Math.max(0, current + delta);
+  qtyEl.textContent = next;
+  if (next > 0) { qtyEl.classList.add('has-qty'); }
+  else          { qtyEl.classList.remove('has-qty'); }
+  savePocBItem(itemId);
 }
 </script>
 </body>
